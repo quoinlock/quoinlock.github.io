@@ -1,1 +1,1 @@
-# quoinlock.github.io
+# quoinlock.com
