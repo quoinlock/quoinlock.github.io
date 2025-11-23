@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Quoinlock</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <link rel="alternate icon" href="images/Quioin-v2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter Tight', sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 15s ease-in-out infinite reverse;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-50px) scale(1.1);
+            }
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 1rem 2rem;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+        }
+
+        .nav-logo span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #d4d4d8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #818cf8;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #818cf8, #a78bfa);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .signup-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .login-btn {
+            background: transparent;
+            color: #d4d4d8;
+            padding: 0.625rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(99, 102, 241, 0.4);
+        }
+
+        .login-btn:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.6);
+            color: #818cf8;
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #818cf8;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #a1a1aa;
+            margin-bottom: 4rem;
+        }
+
+        /* Pricing Table */
+        .pricing-container {
+            overflow-x: auto;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(15, 15, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-table thead {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .pricing-table th {
+            padding: 1.5rem 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #c7d2fe;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .pricing-table th:first-child {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .pricing-table th.plan-header {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+        }
+
+        .pricing-table th.plan-header.featured {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+            position: relative;
+        }
+
+        .pricing-table th.plan-header.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.625rem;
+            padding: 0.25rem 0.5rem;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 4px;
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-name {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            display: block;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #a1a1aa;
+        }
+
+        .pricing-table td {
+            padding: 1.25rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            vertical-align: top;
+        }
+
+        .pricing-table td:first-child {
+            text-align: left;
+            padding-left: 2rem;
+            font-weight: 600;
+            color: #c7d2fe;
+            font-size: 1.125rem;
+        }
+
+        .pricing-table tbody tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Checkmark */
+        .check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.2);
+            border: 2px solid rgba(34, 197, 94, 0.5);
+        }
+
+        .check svg {
+            width: 14px;
+            height: 14px;
+            fill: #22c55e;
+        }
+
+        .value {
+            font-weight: 700;
+            color: #e4e4e7;
+            font-size: 1.125rem;
+        }
+
+        .site-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #e4e4e7;
+        }
+
+        .site-list div {
+            padding: 0.25rem 0;
+        }
+
+        .site-list-header {
+            font-weight: 600;
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* CTA Buttons */
+        .cta-row td {
+            padding: 2rem 1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(99, 102, 241, 0.4);
+            border-radius: 50px;
+            color: #c7d2fe;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.featured {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-btn.featured:hover {
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            background: rgba(15, 15, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #d4d4d8;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #818cf8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: #d4d4d8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .social-links a:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .copyright {
+            color: #a1a1aa;
+            font-size: 0.875rem;
+        }
+
+        .tax-disclaimer {
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pricing-table th,
+            .pricing-table td {
+                padding: 1rem 0.75rem;
+            }
+
+            .pricing-table th:first-child,
+            .pricing-table td:first-child {
+                padding-left: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: rgba(15, 15, 30, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .content {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .pricing-table {
+                font-size: 0.875rem;
+            }
+
+            .pricing-table th {
+                font-size: 1.125rem;
+                padding: 1rem 0.5rem;
+            }
+
+            .pricing-table td {
+                padding: 1rem 0.5rem;
+            }
+
+            .pricing-table th:first-child,
+            .pricing-table td:first-child {
+                padding-left: 0.75rem;
+            }
+
+            .cta-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.875rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .copyright {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo span {
+                font-size: 1.25rem;
+            }
+
+            .nav-logo img {
+                height: 32px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-table th {
+                font-size: 1rem;
+            }
+
+            .pricing-table td:first-child {
+                font-size: 0.875rem;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 0.5rem 1.25rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="images/Quioin-v2.png" alt="Quoinlock Logo">
+                <span>Quoinlock</span>
+            </a>
+
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links">
+                <a href="faq.html">FAQ</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+                <a href="#" class="login-btn">Login</a>
+                <a href="#" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Pricing Plans</h1>
+        <p class="subtitle">Choose the perfect plan for your book monitoring needs</p>
+
+        <div class="pricing-container">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Features</th>
+                        <th class="plan-header">
+                            <span class="plan-name">Basics</span>
+                            <span class="plan-price">$10/mo</span>
+                        </th>
+                        <th class="plan-header featured">
+                            <span class="plan-name">Essentials</span>
+                            <span class="plan-price">$20/mo</span>
+                        </th>
+                        <th class="plan-header">
+                            <span class="plan-name">Advanced</span>
+                            <span class="plan-price">$35/mo</span>
+                        </th>
+                        <th class="plan-header">
+                            <span class="plan-name">Custom</span>
+                            <span class="plan-price">Contact us!</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ISBNs</td>
+                        <td><span class="value">5</span></td>
+                        <td><span class="value">30</span></td>
+                        <td><span class="value">100</span></td>
+                        <td><span class="value">Unlimited</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sites</td>
+                        <td>
+                            <div class="site-list">
+                                <div>Amazon</div>
+                                <div>B&N</div>
+                                <div>Bookshop.org</div>
+                                <div>Bookwire</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="site-list">
+                                <div class="site-list-header">Basics, plus:</div>
+                                <div>GoodReads</div>
+                                <div>Google Books</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="site-list">
+                                <div class="site-list-header">Essential, plus:</div>
+                                <div>Powells</div>
+                                <div>Books-a-Million</div>
+                                <div>ThriftBooks</div>
+                                <div>...more coming!</div>
+                            </div>
+                        </td>
+                        <td><span class="value">Unlimited</span></td>
+                    </tr>
+                    <tr class="cta-row">
+                        <td></td>
+                        <td><a href="#" class="cta-btn">Get Started</a></td>
+                        <td><a href="#" class="cta-btn featured">Get Started</a></td>
+                        <td><a href="#" class="cta-btn">Get Started</a></td>
+                        <td><a href="#" class="cta-btn">Contact Us</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="tax-disclaimer">All prices exclude applicable taxes</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/quoinlock" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@quoinlock" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2025 Quoinlock. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            // Animate hamburger to X
+            const spans = menuToggle.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const spans = menuToggle.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
