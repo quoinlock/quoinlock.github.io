@@ -10,6 +10,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Primary Colors */
+            --primary-indigo: #6366f1;
+            --primary-purple: #8b5cf6;
+            --primary-indigo-light: #818cf8;
+            --primary-purple-light: #a78bfa;
+
+            /* Dark Purple Shades */
+            --purple-dark: #4c1d95;
+            --purple-mid: #7c3aed;
+            --purple-mid-alt: #6d28d9;
+
+            /* Background Colors */
+            --bg-dark-1: #0f0f1e;
+            --bg-dark-2: #1a1a2e;
+            --bg-dark-3: #16213e;
+
+            /* Text Colors */
+            --text-primary: #e4e4e7;
+            --text-secondary: #d4d4d8;
+            --text-tertiary: #a1a1aa;
+            --text-highlight: #c7d2fe;
+
+            /* Utility Colors */
+            --success-green: #22c55e;
+            --white: #ffffff;
+            --black: #000000;
+
+            /* Light Grays (for book pages, etc.) */
+            --gray-light-1: #f5f5f5;
+            --gray-light-2: #e8e8e8;
+            --gray-light-3: #dadada;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,8 +52,8 @@
 
         body {
             font-family: 'Inter Tight', sans-serif;
-            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
-            color: #e4e4e7;
+            background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -31,7 +65,7 @@
             position: fixed;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary-indigo) 15%, transparent) 0%, transparent 70%);
             border-radius: 50%;
             top: -250px;
             right: -250px;
@@ -44,7 +78,7 @@
             position: fixed;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary-purple) 15%, transparent) 0%, transparent 70%);
             border-radius: 50%;
             bottom: -200px;
             left: -200px;
@@ -68,9 +102,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(15, 15, 30, 0.8);
+            background: color-mix(in srgb, var(--bg-dark-1) 80%, transparent);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
             padding: 1rem 2rem;
             animation: slideDown 0.8s ease-out;
         }
@@ -104,13 +138,13 @@
         .nav-logo img {
             height: 40px;
             width: auto;
-            filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+            filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--primary-indigo) 30%, transparent));
         }
 
         .nav-logo span {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -123,7 +157,7 @@
         }
 
         .nav-links a {
-            color: #d4d4d8;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
@@ -132,7 +166,7 @@
         }
 
         .nav-links a:hover {
-            color: #818cf8;
+            color: var(--primary-indigo-light);
         }
 
         .nav-links a::after {
@@ -142,7 +176,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #818cf8, #a78bfa);
+            background: linear-gradient(90deg, var(--primary-indigo-light), var(--primary-purple-light));
             transition: width 0.3s ease;
         }
 
@@ -151,38 +185,38 @@
         }
 
         .signup-btn {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-purple) 100%);
+            color: var(--white);
             padding: 0.625rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-indigo) 40%, transparent);
         }
 
         .signup-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+            box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-indigo) 60%, transparent);
         }
 
         .login-btn {
             background: transparent;
-            color: #d4d4d8;
+            color: var(--text-secondary);
             padding: 0.625rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
             transition: all 0.3s ease;
-            border: 2px solid rgba(99, 102, 241, 0.4);
+            border: 2px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
         }
 
         .login-btn:hover {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: rgba(99, 102, 241, 0.6);
-            color: #818cf8;
+            background: color-mix(in srgb, var(--primary-indigo) 10%, transparent);
+            border-color: color-mix(in srgb, var(--primary-indigo) 60%, transparent);
+            color: var(--primary-indigo-light);
         }
 
         /* Mobile menu toggle */
@@ -199,7 +233,7 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: #818cf8;
+            background: var(--primary-indigo-light);
             border-radius: 2px;
             transition: all 0.3s ease;
         }
@@ -218,7 +252,7 @@
             font-weight: 800;
             margin-bottom: 1rem;
             text-align: center;
-            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -227,7 +261,7 @@
         .subtitle {
             text-align: center;
             font-size: 1.25rem;
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             margin-bottom: 4rem;
         }
 
@@ -241,23 +275,23 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            background: rgba(15, 15, 30, 0.6);
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
         }
 
         .pricing-table thead {
-            background: rgba(99, 102, 241, 0.1);
+            background: color-mix(in srgb, var(--primary-indigo) 10%, transparent);
         }
 
         .pricing-table th {
             padding: 1.5rem 1rem;
             font-size: 1.5rem;
             font-weight: 800;
-            color: #c7d2fe;
-            border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+            color: var(--text-highlight);
+            border-bottom: 2px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
         }
 
         .pricing-table th:first-child {
@@ -267,11 +301,11 @@
 
         .pricing-table th.plan-header {
             text-align: center;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
         }
 
         .pricing-table th.plan-header.featured {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 30%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 30%, transparent) 100%);
             position: relative;
         }
 
@@ -282,9 +316,9 @@
             right: 0.5rem;
             font-size: 0.625rem;
             padding: 0.25rem 0.5rem;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-purple) 100%);
             border-radius: 4px;
-            color: white;
+            color: var(--white);
             letter-spacing: 0.05em;
         }
 
@@ -299,13 +333,13 @@
             display: block;
             font-size: 1.125rem;
             font-weight: 600;
-            color: #a1a1aa;
+            color: var(--text-tertiary);
         }
 
         .pricing-table td {
             padding: 1.25rem 1rem;
             text-align: center;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 10%, transparent);
             vertical-align: top;
         }
 
@@ -313,12 +347,12 @@
             text-align: left;
             padding-left: 2rem;
             font-weight: 600;
-            color: #c7d2fe;
+            color: var(--text-highlight);
             font-size: 1.125rem;
         }
 
         .pricing-table tbody tr:hover {
-            background: rgba(99, 102, 241, 0.05);
+            background: color-mix(in srgb, var(--primary-indigo) 5%, transparent);
         }
 
         .pricing-table tbody tr:last-child td {
@@ -333,19 +367,19 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: rgba(34, 197, 94, 0.2);
-            border: 2px solid rgba(34, 197, 94, 0.5);
+            background: color-mix(in srgb, var(--success-green) 20%, transparent);
+            border: 2px solid color-mix(in srgb, var(--success-green) 50%, transparent);
         }
 
         .check svg {
             width: 14px;
             height: 14px;
-            fill: #22c55e;
+            fill: var(--success-green);
         }
 
         .value {
             font-weight: 700;
-            color: #e4e4e7;
+            color: var(--text-primary);
             font-size: 1.125rem;
         }
 
@@ -354,7 +388,7 @@
             flex-direction: column;
             gap: 0.5rem;
             font-size: 0.9rem;
-            color: #e4e4e7;
+            color: var(--text-primary);
         }
 
         .site-list div {
@@ -363,7 +397,7 @@
 
         .site-list-header {
             font-weight: 600;
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             font-size: 0.85rem;
             margin-bottom: 0.25rem;
         }
@@ -376,10 +410,10 @@
         .cta-btn {
             display: inline-block;
             padding: 0.875rem 2rem;
-            background: rgba(99, 102, 241, 0.2);
-            border: 2px solid rgba(99, 102, 241, 0.4);
+            background: color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border: 2px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
             border-radius: 50px;
-            color: #c7d2fe;
+            color: var(--text-highlight);
             text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
@@ -387,29 +421,29 @@
         }
 
         .cta-btn:hover {
-            background: rgba(99, 102, 241, 0.3);
-            border-color: rgba(99, 102, 241, 0.6);
+            background: color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-color: color-mix(in srgb, var(--primary-indigo) 60%, transparent);
             transform: translateY(-2px);
         }
 
         .cta-btn.featured {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-purple) 100%);
             border-color: transparent;
-            color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            color: var(--white);
+            box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-indigo) 40%, transparent);
         }
 
         .cta-btn.featured:hover {
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+            box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-indigo) 60%, transparent);
         }
 
         /* Footer */
         footer {
             position: relative;
             z-index: 1;
-            background: rgba(15, 15, 30, 0.8);
+            background: color-mix(in srgb, var(--bg-dark-1) 80%, transparent);
             backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            border-top: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
             padding: 2rem;
             margin-top: 4rem;
         }
@@ -431,14 +465,14 @@
         }
 
         .footer-links a {
-            color: #d4d4d8;
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.875rem;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: #818cf8;
+            color: var(--primary-indigo-light);
         }
 
         .social-links {
@@ -447,7 +481,7 @@
         }
 
         .social-links a {
-            color: #d4d4d8;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
@@ -456,13 +490,13 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            background: color-mix(in srgb, var(--primary-indigo) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
         }
 
         .social-links a:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.5);
+            background: color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border-color: color-mix(in srgb, var(--primary-indigo) 50%, transparent);
             transform: translateY(-2px);
         }
 
@@ -473,13 +507,13 @@
         }
 
         .copyright {
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             font-size: 0.875rem;
         }
 
         .tax-disclaimer {
             text-align: center;
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             font-size: 0.875rem;
             margin-top: 1rem;
             font-style: italic;
@@ -512,12 +546,12 @@
                 top: 73px;
                 left: 0;
                 right: 0;
-                background: rgba(15, 15, 30, 0.98);
+                background: color-mix(in srgb, var(--bg-dark-1) 98%, transparent);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
-                border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+                border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
                 transform: translateY(-100%);
                 opacity: 0;
                 pointer-events: none;
@@ -634,6 +668,7 @@
             </button>
 
             <div class="nav-links">
+                <a href="use-cases.html">Use Cases</a>
                 <a href="faq.html">FAQ</a>
                 <a href="pricing.html">Pricing</a>
                 <a href="contact.html">Contact</a>

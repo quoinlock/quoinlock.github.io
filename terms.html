@@ -18,8 +18,8 @@
 
         body {
             font-family: 'Inter Tight', sans-serif;
-            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
-            color: #e4e4e7;
+            background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -31,7 +31,7 @@
             position: fixed;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary-indigo) 15%, transparent) 0%, transparent 70%);
             border-radius: 50%;
             top: -250px;
             right: -250px;
@@ -44,7 +44,7 @@
             position: fixed;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary-purple) 15%, transparent) 0%, transparent 70%);
             border-radius: 50%;
             bottom: -200px;
             left: -200px;
@@ -68,9 +68,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(15, 15, 30, 0.8);
+            background: color-mix(in srgb, var(--bg-dark-1) 80%, transparent);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
             padding: 1rem 2rem;
         }
 
@@ -92,13 +92,13 @@
         .nav-logo img {
             height: 40px;
             width: auto;
-            filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+            filter: drop-shadow(0 4px 12px color-mix(in srgb, var(--primary-indigo) 30%, transparent));
         }
 
         .nav-logo span {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -117,14 +117,14 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .last-updated {
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             font-size: 0.875rem;
             margin-bottom: 3rem;
         }
@@ -134,7 +134,7 @@
             font-weight: 700;
             margin-top: 3rem;
             margin-bottom: 1rem;
-            color: #c7d2fe;
+            color: var(--text-highlight);
         }
 
         h3 {
@@ -142,13 +142,13 @@
             font-weight: 600;
             margin-top: 2rem;
             margin-bottom: 0.75rem;
-            color: #c7d2fe;
+            color: var(--text-highlight);
         }
 
         p {
             line-height: 1.8;
             margin-bottom: 1rem;
-            color: #d4d4d8;
+            color: var(--text-secondary);
         }
 
         ul, ol {
@@ -159,16 +159,16 @@
 
         li {
             margin-bottom: 0.5rem;
-            color: #d4d4d8;
+            color: var(--text-secondary);
         }
 
         a {
-            color: #818cf8;
+            color: var(--primary-indigo-light);
             text-decoration: none;
         }
 
         a:hover {
-            color: #a78bfa;
+            color: var(--primary-purple-light);
             text-decoration: underline;
         }
 
@@ -176,9 +176,9 @@
         footer {
             position: relative;
             z-index: 1;
-            background: rgba(15, 15, 30, 0.8);
+            background: color-mix(in srgb, var(--bg-dark-1) 80%, transparent);
             backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
+            border-top: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
             padding: 2rem;
             margin-top: 4rem;
         }
@@ -190,7 +190,7 @@
         }
 
         .copyright {
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             font-size: 0.875rem;
         }
 

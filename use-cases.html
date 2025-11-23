@@ -3,13 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Quoinlock</title>
+    <title>Use Cases - Quoinlock</title>
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
     <link rel="alternate icon" href="images/Quioin-v2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Primary Colors */
+            --primary-indigo: #6366f1;
+            --primary-purple: #8b5cf6;
+            --primary-indigo-light: #818cf8;
+            --primary-purple-light: #a78bfa;
+
+            /* Dark Purple Shades */
+            --purple-dark: #4c1d95;
+            --purple-mid: #7c3aed;
+            --purple-mid-alt: #6d28d9;
+
+            /* Background Colors */
+            --bg-dark-1: #0f0f1e;
+            --bg-dark-2: #1a1a2e;
+            --bg-dark-3: #16213e;
+
+            /* Text Colors */
+            --text-primary: #e4e4e7;
+            --text-secondary: #d4d4d8;
+            --text-tertiary: #a1a1aa;
+            --text-highlight: #c7d2fe;
+
+            /* Utility Colors */
+            --success-green: #22c55e;
+            --white: #ffffff;
+            --black: #000000;
+
+            /* Light Grays (for book pages, etc.) */
+            --gray-light-1: #f5f5f5;
+            --gray-light-2: #e8e8e8;
+            --gray-light-3: #dadada;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -23,8 +57,6 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
         }
 
         /* Animated background elements */
@@ -210,63 +242,74 @@
         .content {
             position: relative;
             z-index: 1;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 8rem 2rem 4rem;
         }
 
-        .thank-you-container {
-            max-width: 700px;
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
             text-align: center;
-            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-tertiary);
+            margin-bottom: 4rem;
         }
 
-        .checkmark-circle {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
-            border: 3px solid color-mix(in srgb, var(--primary-indigo) 50%, transparent);
-            border-radius: 50%;
+        /* Use Case Cards */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .use-case-card {
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
+            backdrop-filter: blur(10px);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-8px);
+            border-color: color-mix(in srgb, var(--primary-indigo) 60%, transparent);
+            box-shadow: 0 12px 40px color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+        }
+
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: scaleIn 0.5s ease-out 0.3s both;
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
+            border-radius: 12px;
         }
 
-        @keyframes scaleIn {
-            from {
-                transform: scale(0);
-            }
-            to {
-                transform: scale(1);
-            }
-        }
-
-        .checkmark-circle svg {
-            width: 50px;
-            height: 50px;
+        .use-case-icon svg {
+            width: 32px;
+            height: 32px;
             stroke: var(--primary-indigo-light);
-            stroke-width: 3;
             fill: none;
+            stroke-width: 2;
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
+        .use-case-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
             -webkit-background-clip: text;
@@ -274,71 +317,54 @@
             background-clip: text;
         }
 
-        .message {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-        }
-
-        .cta-box {
-            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
-            backdrop-filter: blur(10px);
-            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-highlight);
+        .use-case-card .role {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             margin-bottom: 1rem;
         }
 
-        .cta-text {
-            font-size: 1.125rem;
-            color: var(--text-tertiary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
+        .use-case-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-purple) 100%);
-            color: var(--white);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+        .use-case-card .benefits {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px color-mix(in srgb, var(--primary-indigo) 60%, transparent);
-        }
-
-        .secondary-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .secondary-links a {
-            color: var(--primary-indigo-light);
-            text-decoration: none;
+        .use-case-card .benefits h4 {
+            font-size: 0.875rem;
             font-weight: 600;
-            transition: color 0.3s ease;
+            color: var(--text-highlight);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .secondary-links a:hover {
-            color: var(--primary-purple-light);
-            text-decoration: underline;
+        .use-case-card .benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .use-case-card .benefits li {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .use-case-card .benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
         }
 
         /* Footer */
@@ -349,6 +375,7 @@
             backdrop-filter: blur(10px);
             border-top: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
             padding: 2rem;
+            margin-top: 4rem;
         }
 
         .footer-content {
@@ -415,6 +442,20 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
@@ -459,44 +500,12 @@
                 font-size: 2.5rem;
             }
 
-            .message {
-                font-size: 1.125rem;
-            }
-
-            .cta-box {
-                padding: 2rem 1.5rem;
-            }
-
-            .cta-title {
-                font-size: 1.5rem;
-            }
-
-            .cta-text {
+            .subtitle {
                 font-size: 1rem;
             }
 
-            .cta-button {
-                font-size: 1.125rem;
-                padding: 0.875rem 2.5rem;
-            }
-
-            .secondary-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-logo span {
-                font-size: 1.25rem;
-            }
-
-            .nav-logo img {
-                height: 32px;
-            }
-
-            .login-btn,
-            .signup-btn {
-                padding: 0.5rem 1.25rem;
-                font-size: 0.875rem;
+            .use-case-card {
+                padding: 2rem 1.5rem;
             }
 
             footer {
@@ -516,6 +525,30 @@
 
             .copyright {
                 text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo span {
+                font-size: 1.25rem;
+            }
+
+            .nav-logo img {
+                height: 32px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 0.5rem 1.25rem;
+                font-size: 0.875rem;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -548,31 +581,143 @@
 
     <!-- Content -->
     <div class="content">
-        <div class="thank-you-container">
-            <div class="checkmark-circle">
-                <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 27l7.5 7.5L38 18" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <h1>Use Cases</h1>
+        <p class="subtitle">Discover how Quoinlock helps different roles in the publishing industry</p>
+
+        <div class="use-cases-grid">
+            <!-- Publishers -->
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
+                <div class="role">For Publishers</div>
+                <h3>Catalog Management</h3>
+                <p>As a publisher managing a handful or hundreds of titles, keeping track of book listings across every retail platform is nearly impossible. Quoinlock monitors your entire catalog automatically, alerting you to pricing errors, metadata inconsistencies, or availability issues before they impact sales.</p>
+                <div class="benefits">
+                    <h4>Key Benefits</h4>
+                    <ul>
+                        <li>Monitor unlimited ISBNs across all platforms</li>
+                        <li>Catch unauthorized price changes immediately</li>
+                        <li>Ensure metadata consistency everywhere</li>
+                        <li>Protect your brand and revenue</li>
+                    </ul>
+                </div>
             </div>
 
-            <h1>Thank You!</h1>
-
-            <p class="message">
-                We've received your message and will get back to you shortly. Our team typically responds within 24 hours.
-            </p>
-
-            <div class="cta-box">
-                <h2 class="cta-title">Ready to Get Started?</h2>
-                <p class="cta-text">
-                    Start monitoring your book listings across hundreds of sites today. Set up your account in minutes.
-                </p>
-                <a href="#" class="cta-button">Sign Up Now</a>
+            <!-- Authors -->
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9"/>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                </div>
+                <div class="role">For Authors</div>
+                <h3>Book Launch Monitoring</h3>
+                <p>You've just published your book, and you want to make sure it appears correctly on Amazon, Barnes & Noble, and other retailers. Instead of manually checking each site daily, Quoinlock watches your listings and notifies you the moment your book goes live or if anything changes.</p>
+                <div class="benefits">
+                    <h4>Key Benefits</h4>
+                    <ul>
+                        <li>Know instantly when your book goes live</li>
+                        <li>Verify cover images and descriptions are correct</li>
+                        <li>Track pricing across all retailers</li>
+                        <li>Focus on writing, not manual checking</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="secondary-links">
-                <a href="/">Back to Home</a>
-                <a href="pricing.html">View Pricing</a>
-                <a href="faq.html">Read FAQs</a>
+            <!-- Retailers -->
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                </div>
+                <div class="role">For Retailers</div>
+                <h3>Competitive Price Monitoring</h3>
+                <p>As an online bookstore, you need to stay competitive. Quoinlock helps you monitor competitor pricing across the market, ensuring your prices remain attractive while maintaining healthy margins. Get alerts when competitors change prices or when opportunities arise.</p>
+                <div class="benefits">
+                    <h4>Key Benefits</h4>
+                    <ul>
+                        <li>Track competitor pricing in real-time</li>
+                        <li>Identify pricing opportunities</li>
+                        <li>Maintain competitive advantage</li>
+                        <li>Automate market research</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Independent Bookstores -->
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                <div class="role">For Bookstores</div>
+                <h3>Local Inventory Verification</h3>
+                <p>Your independent bookstore has an online presence on multiple platforms like Bookshop.org and your own website. Quoinlock ensures consistency, pricing, and book information synchronization across online listings.</p>
+                <div class="benefits">
+                    <h4>Key Benefits</h4>
+                    <ul>
+                        <li>Verify listings across multiple platforms</li>
+                        <li>Maintain accurate pricing everywhere</li>
+                        <li>Save time on manual compeditor checks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Self-Publishers -->
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/>
+                        <line x1="9" y1="15" x2="15" y2="15"/>
+                    </svg>
+                </div>
+                <div class="role">For Self-Publishers</div>
+                <h3>Multi-Platform Publishing</h3>
+                <p>You publish on KDP, IngramSpark, Draft2Digital, and other platforms. Each distributor pushes your book to different retailers. Quoinlock helps you track where your book appears, ensuring all platforms show the correct information and that your promotional pricing updates propagate correctly.</p>
+                <div class="benefits">
+                    <h4>Key Benefits</h4>
+                    <ul>
+                        <li>Track distribution across all channels</li>
+                        <li>Verify promotional pricing takes effect</li>
+                        <li>Monitor metadata across platforms</li>
+                        <li>Maximize your publishing reach</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rights Managers -->
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <div class="role">For Rights Managers</div>
+                <h3>Territorial Rights Compliance</h3>
+                <p>Managing territorial rights across different markets is complex. Quoinlock monitors book availability by region, alerting you if a title appears for sale in markets where you haven't granted rights, helping prevent rights violations and lost revenue.</p>
+                <div class="benefits">
+                    <h4>Key Benefits</h4>
+                    <ul>
+                        <li>Monitor regional availability</li>
+                        <li>Detect unauthorized sales territories</li>
+                        <li>Protect territorial rights agreements</li>
+                        <li>Ensure licensing compliance</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
