@@ -262,153 +262,127 @@
             text-align: center;
             font-size: 1.25rem;
             color: var(--text-tertiary);
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
         }
 
-        /* Pricing Table */
-        .pricing-container {
-            overflow-x: auto;
-            margin-bottom: 3rem;
-        }
-
-        .pricing-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
-        }
-
-        .pricing-table thead {
-            background: color-mix(in srgb, var(--primary-indigo) 10%, transparent);
-        }
-
-        .pricing-table th {
-            padding: 1.5rem 1rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-highlight);
-            border-bottom: 2px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
-        }
-
-        .pricing-table th:first-child {
-            text-align: left;
-            padding-left: 2rem;
-        }
-
-        .pricing-table th.plan-header {
+        .trial-badge {
             text-align: center;
-            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
+            font-size: 1rem;
+            color: var(--success-green);
+            margin-bottom: 3rem;
+            font-weight: 600;
         }
 
-        .pricing-table th.plan-header.featured {
-            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 30%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 30%, transparent) 100%);
-            position: relative;
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 1.5rem;
         }
 
-        .pricing-table th.plan-header.featured::before {
-            content: 'POPULAR';
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            font-size: 0.625rem;
-            padding: 0.25rem 0.5rem;
-            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-purple) 100%);
-            border-radius: 4px;
-            color: var(--white);
-            letter-spacing: 0.05em;
-        }
-
-        .plan-name {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 800;
+        .section-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
         }
 
-        .plan-price {
-            display: block;
-            font-size: 1.125rem;
-            font-weight: 600;
+        .section-header p {
             color: var(--text-tertiary);
+            font-size: 0.875rem;
         }
 
-        .pricing-table td {
-            padding: 1.25rem 1rem;
-            text-align: center;
-            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 10%, transparent);
-            vertical-align: top;
+        /* Two-Column Layout */
+        .pricing-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .pricing-table td:first-child {
-            text-align: left;
-            padding-left: 2rem;
-            font-weight: 600;
-            color: var(--text-highlight);
-            font-size: 1.125rem;
-        }
-
-        .pricing-table tbody tr:hover {
-            background: color-mix(in srgb, var(--primary-indigo) 5%, transparent);
-        }
-
-        .pricing-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Checkmark */
-        .check {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: color-mix(in srgb, var(--success-green) 20%, transparent);
-            border: 2px solid color-mix(in srgb, var(--success-green) 50%, transparent);
-        }
-
-        .check svg {
-            width: 14px;
-            height: 14px;
-            fill: var(--success-green);
-        }
-
-        .value {
-            font-weight: 700;
-            color: var(--text-primary);
-            font-size: 1.125rem;
-        }
-
-        .site-list {
+        .isbn-plans-column {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            font-size: 0.9rem;
+        }
+
+        .site-packages-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Pricing Cards */
+        .pricing-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pricing-card {
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
+            backdrop-filter: blur(10px);
+            border: 2px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pricing-card:hover {
+            border-color: color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+            background: color-mix(in srgb, var(--bg-dark-1) 80%, transparent);
+        }
+
+        .pricing-card.selected {
+            border-color: var(--primary-indigo-light);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
+        }
+
+        .pricing-card-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pricing-card-radio {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .pricing-card-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-name {
+            font-size: 1.125rem;
+            font-weight: 700;
             color: var(--text-primary);
-        }
-
-        .site-list div {
-            padding: 0.25rem 0;
-        }
-
-        .site-list-header {
-            font-weight: 600;
-            color: var(--text-tertiary);
-            font-size: 0.85rem;
             margin-bottom: 0.25rem;
         }
 
-        /* CTA Buttons */
-        .cta-row td {
-            padding: 2rem 1rem;
+        .plan-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .plan-isbn-range {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
         }
 
         .cta-btn {
-            display: inline-block;
+            display: block;
+            width: 100%;
             padding: 0.875rem 2rem;
             background: color-mix(in srgb, var(--primary-indigo) 20%, transparent);
             border: 2px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
@@ -418,6 +392,7 @@
             font-weight: 700;
             font-size: 1rem;
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .cta-btn:hover {
@@ -434,6 +409,228 @@
         }
 
         .cta-btn.featured:hover {
+            box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-indigo) 60%, transparent);
+        }
+
+        /* Add-On Packages */
+        .addon-packages {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .addon-card {
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
+            backdrop-filter: blur(10px);
+            border: 2px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .addon-card:hover {
+            border-color: color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+            background: color-mix(in srgb, var(--bg-dark-1) 80%, transparent);
+        }
+
+        .addon-card.selected {
+            border-color: var(--primary-indigo-light);
+            background: color-mix(in srgb, var(--primary-indigo) 15%, transparent);
+        }
+
+        .addon-card.included {
+            border-color: var(--success-green);
+            background: color-mix(in srgb, var(--success-green) 10%, transparent);
+            cursor: default;
+        }
+
+        .addon-card.included .addon-checkbox-input {
+            cursor: default;
+        }
+
+        .addon-card.included .addon-price {
+            color: var(--success-green);
+        }
+
+        .addon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .addon-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .addon-checkbox-input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .addon-name-price {
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
+        }
+
+        .addon-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .addon-price {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+        }
+
+        .addon-sites {
+            color: var(--text-tertiary);
+            font-size: 0.8125rem;
+            line-height: 1.5;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-left: 2.25rem;
+        }
+
+        .addon-card.expanded .addon-sites {
+            max-height: 1000px;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid color-mix(in srgb, var(--primary-indigo) 15%, transparent);
+        }
+
+        .addon-card.included.expanded .addon-sites {
+            border-top-color: color-mix(in srgb, var(--success-green) 20%, transparent);
+        }
+
+        .addon-sites strong {
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.5rem;
+            margin-bottom: 0.375rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .addon-site-item {
+            padding-left: 0.75rem;
+            position: relative;
+            margin-bottom: 0.375rem;
+            line-height: 1.4;
+        }
+
+        .addon-site-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-indigo-light);
+            font-size: 0.875rem;
+        }
+
+        .addon-card.included .addon-site-item::before {
+            color: var(--success-green);
+        }
+
+        .expand-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: color-mix(in srgb, var(--primary-indigo) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .addon-card:hover .expand-toggle {
+            background: color-mix(in srgb, var(--primary-indigo) 15%, transparent);
+            border-color: color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+        }
+
+        .addon-card.included .expand-toggle {
+            background: color-mix(in srgb, var(--success-green) 10%, transparent);
+            border-color: color-mix(in srgb, var(--success-green) 20%, transparent);
+        }
+
+        .addon-card.included:hover .expand-toggle {
+            background: color-mix(in srgb, var(--success-green) 15%, transparent);
+            border-color: color-mix(in srgb, var(--success-green) 30%, transparent);
+        }
+
+        .expand-icon {
+            font-size: 0.875rem;
+            transition: transform 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .addon-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Calculator Total */
+        .calculator-total {
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .calc-total-label {
+            color: var(--text-tertiary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .calc-total-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .calc-total-period {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .calc-total-cta {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-purple) 100%);
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+        }
+
+        .calc-total-cta:hover {
+            transform: translateY(-2px);
             box-shadow: 0 6px 20px color-mix(in srgb, var(--primary-indigo) 60%, transparent);
         }
 
@@ -521,14 +718,9 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .pricing-table th,
-            .pricing-table td {
-                padding: 1rem 0.75rem;
-            }
-
-            .pricing-table th:first-child,
-            .pricing-table td:first-child {
-                padding-left: 1rem;
+            .pricing-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
@@ -580,27 +772,12 @@
                 font-size: 1rem;
             }
 
-            .pricing-table {
-                font-size: 0.875rem;
+            .calc-total-amount {
+                font-size: 2.5rem;
             }
 
-            .pricing-table th {
-                font-size: 1.125rem;
-                padding: 1rem 0.5rem;
-            }
-
-            .pricing-table td {
-                padding: 1rem 0.5rem;
-            }
-
-            .pricing-table th:first-child,
-            .pricing-table td:first-child {
-                padding-left: 0.75rem;
-            }
-
-            .cta-btn {
-                padding: 0.625rem 1.25rem;
-                font-size: 0.875rem;
+            .section-header h2 {
+                font-size: 1.5rem;
             }
 
             footer {
@@ -636,12 +813,16 @@
                 font-size: 2rem;
             }
 
-            .pricing-table th {
-                font-size: 1rem;
+            .section-header h2 {
+                font-size: 1.5rem;
             }
 
-            .pricing-table td:first-child {
-                font-size: 0.875rem;
+            .plan-price {
+                font-size: 2rem;
+            }
+
+            .calc-total-amount {
+                font-size: 2rem;
             }
 
             .login-btn,
@@ -681,79 +862,205 @@
     <!-- Content -->
     <div class="content">
         <h1>Pricing Plans</h1>
-        <p class="subtitle">Choose the perfect plan for your book monitoring needs</p>
+        <p class="subtitle">Choose your ISBN tier and select optional site packages</p>
 
-        <div class="pricing-container">
-            <table class="pricing-table">
-                <thead>
-                    <tr>
-                        <th>Features</th>
-                        <th class="plan-header">
-                            <span class="plan-name">Basics</span>
-                            <span class="plan-price">$10/mo</span>
-                        </th>
-                        <th class="plan-header featured">
-                            <span class="plan-name">Essentials</span>
-                            <span class="plan-price">$20/mo</span>
-                        </th>
-                        <th class="plan-header">
-                            <span class="plan-name">Advanced</span>
-                            <span class="plan-price">$35/mo</span>
-                        </th>
-                        <th class="plan-header">
-                            <span class="plan-name">Custom</span>
-                            <span class="plan-price">Contact us!</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ISBNs</td>
-                        <td><span class="value">5</span></td>
-                        <td><span class="value">30</span></td>
-                        <td><span class="value">100</span></td>
-                        <td><span class="value">Unlimited</span></td>
-                    </tr>
-                    <tr>
-                        <td>Sites</td>
-                        <td>
-                            <div class="site-list">
-                                <div>Amazon</div>
-                                <div>B&N</div>
-                                <div>Bookshop.org</div>
-                                <div>Bookwire</div>
+        <div class="pricing-layout">
+            <!-- Left Column: ISBN Plans -->
+            <div class="isbn-plans-column">
+                <div class="section-header">
+                    <h2>1. Choose ISBN Tier</h2>
+                    <p>Select based on how many books you need to monitor</p>
+                </div>
+
+                <div class="pricing-cards">
+                    <!-- Starter Plan -->
+                    <div class="pricing-card selected" data-price="9.95" data-tier="starter">
+                        <div class="pricing-card-left">
+                            <input type="radio" name="isbn-tier" class="pricing-card-radio" checked>
+                            <div class="pricing-card-info">
+                                <div class="plan-name">Starter</div>
+                                <div class="plan-isbn-range">1 - 10 ISBNs</div>
                             </div>
-                        </td>
-                        <td>
-                            <div class="site-list">
-                                <div class="site-list-header">Basics, plus:</div>
-                                <div>GoodReads</div>
-                                <div>Google Books</div>
+                        </div>
+                        <div class="plan-price">$9.95</div>
+                    </div>
+
+                    <!-- Growth Plan -->
+                    <div class="pricing-card" data-price="24.95" data-tier="growth">
+                        <div class="pricing-card-left">
+                            <input type="radio" name="isbn-tier" class="pricing-card-radio">
+                            <div class="pricing-card-info">
+                                <div class="plan-name">Growth</div>
+                                <div class="plan-isbn-range">11 - 50 ISBNs</div>
                             </div>
-                        </td>
-                        <td>
-                            <div class="site-list">
-                                <div class="site-list-header">Essential, plus:</div>
-                                <div>Powells</div>
-                                <div>Books-a-Million</div>
-                                <div>ThriftBooks</div>
-                                <div>...more coming!</div>
+                        </div>
+                        <div class="plan-price">$24.95</div>
+                    </div>
+
+                    <!-- Professional Plan -->
+                    <div class="pricing-card" data-price="49.95" data-tier="professional">
+                        <div class="pricing-card-left">
+                            <input type="radio" name="isbn-tier" class="pricing-card-radio">
+                            <div class="pricing-card-info">
+                                <div class="plan-name">Professional</div>
+                                <div class="plan-isbn-range">51 - 200 ISBNs</div>
                             </div>
-                        </td>
-                        <td><span class="value">Unlimited</span></td>
-                    </tr>
-                    <tr class="cta-row">
-                        <td></td>
-                        <td><a href="#" class="cta-btn">Get Started</a></td>
-                        <td><a href="#" class="cta-btn featured">Get Started</a></td>
-                        <td><a href="#" class="cta-btn">Get Started</a></td>
-                        <td><a href="#" class="cta-btn">Contact Us</a></td>
-                    </tr>
-                </tbody>
-            </table>
+                        </div>
+                        <div class="plan-price">$49.95</div>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="pricing-card" data-price="0" data-tier="enterprise">
+                        <div class="pricing-card-left">
+                            <input type="radio" name="isbn-tier" class="pricing-card-radio">
+                            <div class="pricing-card-info">
+                                <div class="plan-name">Enterprise</div>
+                                <div class="plan-isbn-range">200+ ISBNs</div>
+                            </div>
+                        </div>
+                        <div class="plan-price">Custom</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Site Packages -->
+            <div class="site-packages-column">
+                <div class="section-header">
+                    <h2>2. Select Site Packages</h2>
+                    <p>Base Package included • Add more for $9.95/mo each</p>
+                </div>
+
+                <div class="addon-packages">
+                    <!-- Base Package (Included) -->
+                    <div class="addon-card included expanded">
+                        <div class="addon-header">
+                            <div class="addon-header-left">
+                                <input type="checkbox" class="addon-checkbox-input" checked disabled>
+                                <div class="addon-name-price">
+                                    <div class="addon-name">Base Package</div>
+                                    <div class="addon-price">Included</div>
+                                </div>
+                            </div>
+                            <div class="expand-toggle">
+                                <span class="expand-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="addon-sites">
+                            <div class="addon-site-item">Bookwire (canonical metadata)</div>
+                            <div class="addon-site-item">Amazon US</div>
+                            <div class="addon-site-item">Barnes & Noble</div>
+                            <div class="addon-site-item">Walmart</div>
+                            <div class="addon-site-item">Bookshop.org</div>
+                        </div>
+                    </div>
+
+                    <div class="addon-card" data-price="9.95" data-addon="major">
+                        <div class="addon-header">
+                            <div class="addon-header-left">
+                                <input type="checkbox" class="addon-checkbox-input">
+                                <div class="addon-name-price">
+                                    <div class="addon-name">Major Retailers</div>
+                                    <div class="addon-price">+$9.95/mo</div>
+                                </div>
+                            </div>
+                            <div class="expand-toggle">
+                                <span class="expand-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="addon-sites">
+                            <div class="addon-site-item">Target.com</div>
+                            <div class="addon-site-item">Books-A-Million</div>
+                            <div class="addon-site-item">Hudson Booksellers</div>
+                            <div class="addon-site-item">Costco</div>
+                        </div>
+                    </div>
+
+                    <div class="addon-card" data-price="9.95" data-addon="library">
+                        <div class="addon-header">
+                            <div class="addon-header-left">
+                                <input type="checkbox" class="addon-checkbox-input">
+                                <div class="addon-name-price">
+                                    <div class="addon-name">Library</div>
+                                    <div class="addon-price">+$9.95/mo</div>
+                                </div>
+                            </div>
+                            <div class="expand-toggle">
+                                <span class="expand-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="addon-sites">
+                            <div class="addon-site-item">WorldCat (global catalog)</div>
+                            <div class="addon-site-item">LibraryThing</div>
+                            <div class="addon-site-item">Library of Congress</div>
+                            <div class="addon-site-item">Open Library</div>
+                        </div>
+                    </div>
+
+                    <div class="addon-card" data-price="9.95" data-addon="metro">
+                        <div class="addon-header">
+                            <div class="addon-header-left">
+                                <input type="checkbox" class="addon-checkbox-input">
+                                <div class="addon-name-price">
+                                    <div class="addon-name">Metro Bookstores</div>
+                                    <div class="addon-price">+$9.95/mo</div>
+                                </div>
+                            </div>
+                            <div class="expand-toggle">
+                                <span class="expand-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="addon-sites">
+                            <strong>West Coast</strong>
+                            <div class="addon-site-item">Powell's (Portland)</div>
+                            <div class="addon-site-item">Elliott Bay (Seattle)</div>
+                            <div class="addon-site-item">City Lights (San Francisco)</div>
+                            <div class="addon-site-item">The Last Bookstore (LA)</div>
+                            <strong>East Coast</strong>
+                            <div class="addon-site-item">The Strand (New York)</div>
+                            <div class="addon-site-item">McNally Jackson (NYC)</div>
+                            <div class="addon-site-item">Politics and Prose (DC)</div>
+                            <div class="addon-site-item">Trident (Boston)</div>
+                            <strong>Midwest & South</strong>
+                            <div class="addon-site-item">Seminary Co-op (Chicago)</div>
+                            <div class="addon-site-item">Magers & Quinn (Minneapolis)</div>
+                            <div class="addon-site-item">BookPeople (Austin)</div>
+                            <div class="addon-site-item">Tattered Cover (Denver)</div>
+                            <em>...and 13 more</em>
+                        </div>
+                    </div>
+
+                    <div class="addon-card" data-price="9.95" data-addon="specialty">
+                        <div class="addon-header">
+                            <div class="addon-header-left">
+                                <input type="checkbox" class="addon-checkbox-input">
+                                <div class="addon-name-price">
+                                    <div class="addon-name">Specialty</div>
+                                    <div class="addon-price">+$9.95/mo</div>
+                                </div>
+                            </div>
+                            <div class="expand-toggle">
+                                <span class="expand-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="addon-sites">
+                            <div class="addon-site-item">Goodreads (reviews & ratings)</div>
+                            <div class="addon-site-item">IndieBound (indie network)</div>
+                            <div class="addon-site-item">Alibris (rare & used)</div>
+                            <div class="addon-site-item">AbeBooks (rare books)</div>
+                            <div class="addon-site-item">ThriftBooks (used)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <p class="tax-disclaimer">All prices exclude applicable taxes</p>
+        <!-- Calculator Total -->
+        <div class="calculator-total">
+            <div class="calc-total-label">Your Total Monthly Cost</div>
+            <div class="calc-total-amount" id="totalAmount">$9.95</div>
+            <div class="calc-total-period">per month + applicable taxes</div>
+            <a href="#" class="calc-total-cta">Get Started</a>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -814,6 +1121,98 @@
                 spans[2].style.transform = 'none';
             });
         });
+
+        // Pricing Calculator
+        let selectedTierPrice = 9.95;
+        let selectedAddons = new Map();
+
+        // ISBN Tier selection
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove selected class from all cards
+                document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('selected'));
+
+                // Add selected class to clicked card
+                card.classList.add('selected');
+
+                // Update radio button
+                const radio = card.querySelector('.pricing-card-radio');
+                radio.checked = true;
+
+                // Update selected price
+                selectedTierPrice = parseFloat(card.dataset.price);
+
+                // Update total
+                updateTotal();
+            });
+        });
+
+        // Addon package selection and expansion
+        document.querySelectorAll('.addon-card').forEach(card => {
+            const checkbox = card.querySelector('.addon-checkbox-input');
+            const expandToggle = card.querySelector('.expand-toggle');
+
+            // Expand/collapse on toggle click
+            if (expandToggle) {
+                expandToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    card.classList.toggle('expanded');
+                });
+            }
+
+            // Skip the included base package for selection
+            if (card.classList.contains('included')) {
+                return;
+            }
+
+            // Click on card toggles checkbox (but not expand toggle)
+            card.addEventListener('click', (e) => {
+                // Don't toggle if clicking on checkbox or expand toggle
+                if (e.target === checkbox || e.target.closest('.expand-toggle')) {
+                    return;
+                }
+                checkbox.checked = !checkbox.checked;
+                handleAddonChange(card, checkbox);
+            });
+
+            // Checkbox change
+            checkbox.addEventListener('change', () => {
+                handleAddonChange(card, checkbox);
+            });
+        });
+
+        function handleAddonChange(card, checkbox) {
+            const addon = card.dataset.addon;
+            const price = parseFloat(card.dataset.price);
+
+            if (checkbox.checked) {
+                card.classList.add('selected');
+                selectedAddons.set(addon, price);
+            } else {
+                card.classList.remove('selected');
+                selectedAddons.delete(addon);
+            }
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = selectedTierPrice;
+
+            // Add addon prices
+            selectedAddons.forEach(price => {
+                total += price;
+            });
+
+            // Update display
+            const totalElement = document.getElementById('totalAmount');
+
+            if (selectedTierPrice === 0) {
+                totalElement.textContent = 'Custom';
+            } else {
+                totalElement.textContent = '$' + total.toFixed(2);
+            }
+        }
     </script>
 </body>
 </html>
