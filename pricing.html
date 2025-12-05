@@ -873,13 +873,25 @@
                 </div>
 
                 <div class="pricing-cards">
-                    <!-- Starter Plan -->
-                    <div class="pricing-card selected" data-price="9.95" data-tier="starter">
+                    <!-- Free Tier -->
+                    <div class="pricing-card selected" data-price="0" data-tier="free">
                         <div class="pricing-card-left">
                             <input type="radio" name="isbn-tier" class="pricing-card-radio" checked>
                             <div class="pricing-card-info">
+                                <div class="plan-name">Free</div>
+                                <div class="plan-isbn-range">1 - 2 ISBNs</div>
+                            </div>
+                        </div>
+                        <div class="plan-price">Free</div>
+                    </div>
+
+                    <!-- Starter Plan -->
+                    <div class="pricing-card" data-price="9.95" data-tier="starter">
+                        <div class="pricing-card-left">
+                            <input type="radio" name="isbn-tier" class="pricing-card-radio">
+                            <div class="pricing-card-info">
                                 <div class="plan-name">Starter</div>
-                                <div class="plan-isbn-range">1 - 10 ISBNs</div>
+                                <div class="plan-isbn-range">3 - 10 ISBNs</div>
                             </div>
                         </div>
                         <div class="plan-price">$9.95</div>
@@ -1057,7 +1069,7 @@
         <!-- Calculator Total -->
         <div class="calculator-total">
             <div class="calc-total-label">Your Total Monthly Cost</div>
-            <div class="calc-total-amount" id="totalAmount">$9.95</div>
+            <div class="calc-total-amount" id="totalAmount">Free</div>
             <div class="calc-total-period">per month + applicable taxes</div>
             <a href="#" class="calc-total-cta">Get Started</a>
         </div>
@@ -1123,7 +1135,8 @@
         });
 
         // Pricing Calculator
-        let selectedTierPrice = 9.95;
+        let selectedTierPrice = 0;
+        let selectedTier = 'free';
         let selectedAddons = new Map();
 
         // ISBN Tier selection
@@ -1139,8 +1152,9 @@
                 const radio = card.querySelector('.pricing-card-radio');
                 radio.checked = true;
 
-                // Update selected price
+                // Update selected price and tier
                 selectedTierPrice = parseFloat(card.dataset.price);
+                selectedTier = card.dataset.tier;
 
                 // Update total
                 updateTotal();
@@ -1207,8 +1221,10 @@
             // Update display
             const totalElement = document.getElementById('totalAmount');
 
-            if (selectedTierPrice === 0) {
+            if (selectedTier === 'enterprise') {
                 totalElement.textContent = 'Custom';
+            } else if (selectedTier === 'free' && total === 0) {
+                totalElement.textContent = 'Free';
             } else {
                 totalElement.textContent = '$' + total.toFixed(2);
             }
