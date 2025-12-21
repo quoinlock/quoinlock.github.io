@@ -14,7 +14,11 @@ const CONFIG = {
     // Social Media Links
     social: {
         linkedin: 'https://www.linkedin.com/company/quoinlock',
-        youtube: 'https://www.youtube.com/@quoinlock'
+        youtube: 'https://www.youtube.com/@quoinlock',
+        facebook: 'https://www.facebook.com/quoinlock',
+        instagram: 'https://www.instagram.com/quoinlock',
+        x: 'https://x.com/quoinlock',
+        substack: 'https://quoinlock.substack.com/'
     },
 
     // Site Information
