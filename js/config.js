@@ -25,6 +25,6 @@ const CONFIG = {
     site: {
         productName: 'Quoinlock',
         companyName: 'Quoin LLC',
-        copyright: '2025 Quoin LLC. All rights reserved.'
+        copyright: '2026 Quoin LLC. All rights reserved.'
     }
 };
