@@ -6,9 +6,9 @@
 const CONFIG = {
     // Portal URLs
     portal: {
-        base: 'https://portal.quoinlock.com',
-        login: 'https://portal.quoinlock.com/auth/login',
-        register: 'https://portal.quoinlock.com/auth/register'
+        base: 'https://app.quoinlock.com',
+        login: 'https://app.quoinlock.com/auth/login',
+        register: 'https://app.quoinlock.com/auth/register'
     },
 
     // Social Media Links
