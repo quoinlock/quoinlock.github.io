@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetterPress Tools - Quoinlock</title>
+    <link rel="icon" type="image/svg+xml" href="../images/logo.svg">
+    <link rel="alternate icon" href="../images/Quioin-v2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===================================
+           CSS Variables - Quoinlock Branding
+           =================================== */
+        :root {
+            --primary-indigo: #6366f1;
+            --primary-purple: #8b5cf6;
+            --primary-indigo-light: #818cf8;
+            --primary-purple-light: #a78bfa;
+            --primary-pink: #8b5cf6;
+            --primary-pink-light: #a78bfa;
+            --primary-teal: #6366f1;
+            --primary-teal-light: #818cf8;
+            --primary-purple-dark: #7c3aed;
+            --purple-dark: #4c1d95;
+            --purple-mid: #7c3aed;
+            --bg-dark-1: #0f0f1e;
+            --bg-dark-2: #1a1a2e;
+            --bg-dark-3: #16213e;
+            --text-primary: #e4e4e7;
+            --text-secondary: #d4d4d8;
+            --text-tertiary: #a1a1aa;
+            --text-highlight: #e9d5ff;
+            --success-green: #86efac;
+            --white: #ffffff;
+        }
+
+        /* ===================================
+           Global Styles
+           =================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter Tight', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 50%, var(--bg-dark-3) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 1rem;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary-pink) 30%, transparent) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -300px;
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary-teal) 30%, transparent) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -250px;
+            left: -250px;
+            animation: float 15s ease-in-out infinite reverse;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-50px) scale(1.1); }
+        }
+
+        /* ===================================
+           Container
+           =================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ===================================
+           Header
+           =================================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .brand-name {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .brand-name:hover {
+            opacity: 0.8;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            font-weight: 400;
+            margin-top: 0.15rem;
+        }
+
+        /* ===================================
+           Tabs
+           =================================== */
+        .tabs {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: -1px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.6rem 1.25rem;
+            background: rgba(15, 15, 30, 0.4);
+            backdrop-filter: blur(30px);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            color: var(--text-secondary);
+            font-family: 'Inter Tight', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            background: rgba(15, 15, 30, 0.6);
+            border-color: color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+            color: var(--text-primary);
+        }
+
+        .tab-button.active {
+            background: rgba(15, 15, 30, 0.7);
+            border-color: color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            color: var(--white);
+            box-shadow: 0 -2px 8px color-mix(in srgb, var(--primary-purple) 30%, transparent);
+            z-index: 1;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(15, 15, 30, 0.7);
+        }
+
+        /* ===================================
+           Tab Content
+           =================================== */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .app-card {
+            background: rgba(15, 15, 30, 0.7);
+            backdrop-filter: blur(30px);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ===================================
+           Character Counter App
+           =================================== */
+        .input-section {
+            margin-bottom: 1rem;
+        }
+
+        .input-section h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-purple-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .text-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 0.75rem;
+            background: rgba(15, 15, 30, 0.9);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Inter Tight', sans-serif;
+            font-size: 0.875rem;
+            resize: vertical;
+            transition: all 0.3s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary-purple-light);
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-purple) 20%, transparent);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            font-family: 'Inter Tight', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-indigo));
+            color: var(--white);
+            box-shadow: 0 2px 8px color-mix(in srgb, var(--primary-purple) 40%, transparent);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-purple) 60%, transparent);
+        }
+
+        .btn-secondary {
+            background: rgba(15, 15, 30, 0.7);
+            color: var(--text-primary);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(15, 15, 30, 0.9);
+            border-color: var(--primary-purple-light);
+        }
+
+        .output-section {
+            margin-top: 1rem;
+        }
+
+        .output-section h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-purple-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .original-text {
+            background: rgba(15, 15, 30, 0.5);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .original-text h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-pink-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .original-text-content {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.875rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .character-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .character-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 0.6rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .character-item:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateX(2px);
+        }
+
+        .char-symbol {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .char-count {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--primary-purple-light);
+            background: rgba(139, 92, 246, 0.2);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+            font-size: 0.875rem;
+        }
+
+        /* ===================================
+           Footer
+           =================================== */
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--primary-purple-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--primary-pink-light);
+        }
+
+        /* ===================================
+           Print Styles
+           =================================== */
+        .print-header {
+            display: none;
+        }
+
+        @media print {
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                background: white !important;
+                color: black;
+                padding: 0.5in;
+                margin: 0;
+            }
+
+            body::before,
+            body::after {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            header,
+            .tabs,
+            .button-group {
+                display: none !important;
+            }
+
+            .print-header {
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.5rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 2px solid #333;
+            }
+
+            .print-title {
+                font-size: 1.25rem;
+                font-weight: 800;
+                color: #6366f1;
+                letter-spacing: -0.02em;
+            }
+
+            .print-brand {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .print-brand img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .print-brand-name {
+                font-size: 1rem;
+                font-weight: 800;
+                color: #6366f1;
+                letter-spacing: -0.02em;
+            }
+
+            .app-card {
+                background: white !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
+            .input-section {
+                display: none !important;
+            }
+
+            .output-section {
+                margin-top: 0 !important;
+                display: block !important;
+            }
+
+            .output-section h2 {
+                display: none !important;
+            }
+
+            #results {
+                display: block !important;
+            }
+
+            .original-text {
+                display: block !important;
+                background: white;
+                border: 2px solid #333;
+                margin-bottom: 0.5rem;
+                padding: 0.5rem;
+            }
+
+            .original-text h3 {
+                display: block !important;
+                color: black;
+                font-size: 0.875rem;
+                font-weight: 700;
+                margin-bottom: 0.25rem;
+            }
+
+            .original-text-content {
+                display: block !important;
+                color: black;
+                font-size: 0.8rem;
+            }
+
+            .character-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.5rem !important;
+                page-break-inside: avoid;
+                margin-bottom: 0.5rem;
+                visibility: visible !important;
+            }
+
+            .character-column {
+                border: 2px solid #333;
+                padding: 0.5rem;
+                page-break-inside: avoid;
+            }
+
+            .character-item {
+                display: flex !important;
+                background: white !important;
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 0;
+                padding: 0.3rem 0.5rem;
+                border-radius: 0 !important;
+            }
+
+            .character-item:last-child {
+                border-bottom: none;
+            }
+
+            .character-item:hover {
+                transform: none;
+                background: white !important;
+            }
+
+            .char-symbol {
+                font-size: 0.9rem;
+                color: black;
+                flex: 1;
+            }
+
+            .char-count {
+                font-size: 0.8rem;
+                color: black;
+                background: #f0f0f0;
+            }
+
+            footer {
+                margin-top: 0.5rem;
+                padding-top: 0.5rem;
+                border-top: 1px solid #333;
+                color: black;
+                page-break-inside: avoid;
+                font-size: 0.75rem;
+            }
+
+            footer p {
+                margin: 0;
+            }
+
+            footer a {
+                color: #6366f1;
+            }
+
+            .print-message {
+                display: none !important;
+            }
+
+            #results.empty-state {
+                display: none !important;
+            }
+
+            .empty-state {
+                display: none !important;
+            }
+        }
+
+        /* ===================================
+           Responsive Design
+           =================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.75rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: flex-start;
+            }
+
+            .header-left {
+                width: 100%;
+            }
+
+            .header-right {
+                text-align: left;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            .subtitle {
+                font-size: 0.7rem;
+            }
+
+            .logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .character-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .tab-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .button-group {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <a href="../" title="Back to Quoinlock">
+                    <img src="../images/logo.svg" alt="Quoinlock Logo" class="logo">
+                </a>
+                <a href="../" class="brand-name">Quoinlock</a>
+            </div>
+            <div class="header-right">
+                <h1>LetterPress Tools</h1>
+                <p class="subtitle">Professional tools for letterpress typesetters</p>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="character-counter">Character Counter</button>
+            <!-- Future tabs will go here -->
+        </div>
+
+        <!-- Character Counter Tab -->
+        <div id="character-counter" class="tab-content active">
+            <div class="app-card">
+                <div class="input-section">
+                    <h2>Text to Analyze</h2>
+                    <textarea
+                        id="textInput"
+                        class="text-input"
+                        placeholder="Enter or paste your text here to analyze character frequency..."
+                    ></textarea>
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="clearText()">Clear</button>
+                        <button class="btn btn-secondary" onclick="window.print()">Print Results</button>
+                    </div>
+                </div>
+
+                <div class="output-section" id="outputSection">
+                    <h2>Character Frequency</h2>
+
+                    <!-- Print-only header -->
+                    <div class="print-header">
+                        <div class="print-title">Character Frequency</div>
+                        <div class="print-brand">
+                            <img src="../images/logo.svg" alt="Quoinlock Logo">
+                            <span class="print-brand-name">Quoinlock</span>
+                        </div>
+                    </div>
+
+                    <div id="results" class="empty-state">
+                        Enter text above and click "Analyze Characters" to see the character breakdown.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Brought to you by <a href="https://quoinlock.com" target="_blank">Quoinlock</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all tabs and buttons
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Character counter functionality
+        function analyzeText() {
+            const text = document.getElementById('textInput').value;
+            const resultsDiv = document.getElementById('results');
+
+            if (!text.trim()) {
+                resultsDiv.classList.add('empty-state');
+                resultsDiv.innerHTML = '<div class="empty-state">Please enter some text to analyze.</div>';
+                return;
+            }
+
+            // Remove empty-state class so content is visible
+            resultsDiv.classList.remove('empty-state');
+
+            // Count characters (skip newlines and carriage returns)
+            const charCount = {};
+            for (let char of text) {
+                // Skip newline, carriage return, and other non-printable characters
+                if (char === '\n' || char === '\r' || char === '\t') {
+                    continue;
+                }
+                charCount[char] = (charCount[char] || 0) + 1;
+            }
+
+            // Sort by frequency (descending)
+            const sortedChars = Object.entries(charCount).sort((a, b) => b[1] - a[1]);
+
+            // Categorize characters
+            const uppercase = sortedChars.filter(([char]) => /[A-Z]/.test(char));
+            const numbers = sortedChars.filter(([char]) => /[0-9]/.test(char));
+            const punctuation = sortedChars.filter(([char]) => !/[A-Za-z0-9\s]/.test(char));
+            const spaces = sortedChars.filter(([char]) => char === ' ');
+            const lowercase = sortedChars.filter(([char]) => /[a-z]/.test(char));
+
+            // Left column: uppercase, numbers, punctuation, then spaces
+            const leftColumn = [...uppercase, ...numbers, ...punctuation, ...spaces];
+            const rightColumn = lowercase;
+
+            // Generate HTML
+            resultsDiv.innerHTML = `
+                <div class="original-text">
+                    <h3>Original Text:</h3>
+                    <div class="original-text-content">${escapeHtml(text)}</div>
+                </div>
+                <div class="character-grid">
+                    <div class="character-column">
+                        ${leftColumn.length > 0
+                            ? leftColumn.map(([char, count]) => createCharacterItem(char, count)).join('')
+                            : '<div style="padding: 1rem; text-align: center; color: #999;">No uppercase, spaces, or punctuation</div>'}
+                    </div>
+                    <div class="character-column">
+                        ${rightColumn.length > 0
+                            ? rightColumn.map(([char, count]) => createCharacterItem(char, count)).join('')
+                            : '<div style="padding: 1rem; text-align: center; color: #999;">No lowercase letters</div>'}
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function createCharacterItem(char, count) {
+            // Handle special display cases
+            let displayChar;
+            if (char === ' ') {
+                displayChar = '␣';
+            } else if (char === '\t') {
+                displayChar = '⇥'; // Tab symbol
+            } else if (char === '\n') {
+                displayChar = '↵'; // Newline symbol
+            } else if (char === '\r') {
+                displayChar = '⏎'; // Return symbol
+            } else {
+                displayChar = char;
+            }
+
+            return `
+                <div class="character-item">
+                    <span class="char-symbol">${escapeHtml(displayChar)}</span>
+                    <span class="char-count">${count}</span>
+                </div>
+            `;
+        }
+
+        function clearText() {
+            const resultsDiv = document.getElementById('results');
+            document.getElementById('textInput').value = '';
+            resultsDiv.classList.add('empty-state');
+            resultsDiv.innerHTML = 'Enter text above to see the character breakdown.';
+        }
+
+        // Auto-analyze on input (with debouncing)
+        let debounceTimer;
+        document.getElementById('textInput').addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                if (document.getElementById('textInput').value.trim()) {
+                    analyzeText();
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
