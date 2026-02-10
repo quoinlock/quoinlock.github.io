@@ -680,7 +680,9 @@
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab-button active" data-tab="character-counter">Character Counter</button>
-            <!-- Future tabs will go here -->
+            <button class="tab-button" data-tab="line-length">Line Length</button>
+            <button class="tab-button" data-tab="unit-converter">Unit Converter</button>
+            <button class="tab-button" data-tab="leading-calc">Leading Calculator</button>
         </div>
 
         <!-- Character Counter Tab -->
@@ -713,6 +715,148 @@
 
                     <div id="results" class="empty-state">
                         Enter text above and click "Analyze Characters" to see the character breakdown.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Length Calculator Tab -->
+        <div id="line-length" class="tab-content">
+            <div class="app-card">
+                <div class="input-section">
+                    <h2>Line Length Calculator</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Calculate how many characters fit in a given line width.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Line Width</label>
+                            <input type="number" id="lineWidth" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="30" step="0.1" oninput="calculateLineLength()">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Unit</label>
+                            <select id="lineWidthUnit" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLineLength()">
+                                <option value="picas">Picas</option>
+                                <option value="inches">Inches</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Type Size (points)</label>
+                            <input type="number" id="typeSize" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="12" step="0.5" oninput="calculateLineLength()">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Typeface Width</label>
+                            <select id="typefaceWidth" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLineLength()">
+                                <option value="0.5">Condensed</option>
+                                <option value="0.6" selected>Normal</option>
+                                <option value="0.7">Wide</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <h2>Results</h2>
+                    <div id="lineLengthResults" style="padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="charsPerLine">—</div>
+                        <div style="color: var(--text-secondary); font-size: 0.875rem;">characters per line</div>
+                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                            <div style="color: var(--text-tertiary); font-size: 0.75rem; margin-bottom: 0.5rem;">Readability Guide:</div>
+                            <div id="readabilityNote" style="color: var(--text-secondary); font-size: 0.875rem;">Enter values to see recommendation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit Converter Tab -->
+        <div id="unit-converter" class="tab-content">
+            <div class="app-card">
+                <div class="input-section">
+                    <h2>Unit Converter</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Convert between typographic units.</p>
+
+                    <div style="display: grid; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Points</label>
+                            <input type="number" id="points" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="72" step="0.1" oninput="convertFromPoints()">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Picas</label>
+                            <input type="number" id="picas" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="6" step="0.1" oninput="convertFromPicas()">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Inches</label>
+                            <input type="number" id="inches" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="1" step="0.01" oninput="convertFromInches()">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Millimeters</label>
+                            <input type="number" id="millimeters" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="25.4" step="0.1" oninput="convertFromMillimeters()">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="clearConverter()">Clear All</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <h2>Reference</h2>
+                    <div style="padding: 1rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px; font-size: 0.875rem; color: var(--text-secondary);">
+                        <div style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-purple-light);">1 inch</strong> = 72 points = 6 picas = 25.4mm</div>
+                        <div style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-purple-light);">1 pica</strong> = 12 points = 1/6 inch = 4.23mm</div>
+                        <div><strong style="color: var(--primary-purple-light);">1 point</strong> = 1/72 inch = 0.35mm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leading Calculator Tab -->
+        <div id="leading-calc" class="tab-content">
+            <div class="app-card">
+                <div class="input-section">
+                    <h2>Leading Calculator</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Calculate leading (line spacing) for your layout.</p>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Number of Lines</label>
+                        <input type="number" id="numLines" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="20" step="1" oninput="calculateLeading()">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Total Height</label>
+                            <input type="number" id="totalHeight" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="40" step="0.1" oninput="calculateLeading()">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Unit</label>
+                            <select id="heightUnit" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLeading()">
+                                <option value="picas">Picas</option>
+                                <option value="inches">Inches</option>
+                                <option value="points">Points</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Type Size (points)</label>
+                        <input type="number" id="leadingTypeSize" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="12" step="0.5" oninput="calculateLeading()">
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <h2>Results</h2>
+                    <div id="leadingResults" style="padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px;">
+                        <div style="text-align: center; margin-bottom: 1rem;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="leadingValue">—</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">points leading</div>
+                        </div>
+                        <div style="padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;" id="leadingNotation">—</div>
+                            <div style="color: var(--text-tertiary); font-size: 0.75rem;" id="leadingNote">—</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -843,6 +987,170 @@
                 }
             }, 500);
         });
+
+        // ===================================
+        // Line Length Calculator
+        // ===================================
+        function calculateLineLength() {
+            const lineWidth = parseFloat(document.getElementById('lineWidth').value);
+            const unit = document.getElementById('lineWidthUnit').value;
+            const typeSize = parseFloat(document.getElementById('typeSize').value);
+            const widthFactor = parseFloat(document.getElementById('typefaceWidth').value);
+
+            if (!lineWidth || !typeSize) {
+                document.getElementById('charsPerLine').textContent = '—';
+                document.getElementById('readabilityNote').textContent = 'Enter values to see recommendation';
+                return;
+            }
+
+            // Convert to points
+            let lineWidthPoints = lineWidth;
+            if (unit === 'picas') {
+                lineWidthPoints = lineWidth * 12; // 1 pica = 12 points
+            } else if (unit === 'inches') {
+                lineWidthPoints = lineWidth * 72; // 1 inch = 72 points
+            }
+
+            // Average character width is approximately 0.6 times the type size for normal typefaces
+            const avgCharWidth = typeSize * widthFactor;
+            const charsPerLine = Math.floor(lineWidthPoints / avgCharWidth);
+
+            document.getElementById('charsPerLine').textContent = charsPerLine;
+
+            // Readability guidance (45-75 characters is generally considered optimal)
+            let note = '';
+            if (charsPerLine < 35) {
+                note = '⚠️ Too short - lines may be choppy and hard to read';
+            } else if (charsPerLine < 45) {
+                note = '📏 Slightly short - acceptable for narrow columns';
+            } else if (charsPerLine <= 75) {
+                note = '✓ Optimal - good readability';
+            } else if (charsPerLine <= 90) {
+                note = '📏 Slightly long - may strain eye tracking';
+            } else {
+                note = '⚠️ Too long - difficult to track from line to line';
+            }
+            document.getElementById('readabilityNote').textContent = note;
+        }
+
+        // ===================================
+        // Unit Converter
+        // ===================================
+        let isConverting = false;
+
+        function convertFromPoints() {
+            if (isConverting) return;
+            isConverting = true;
+
+            const points = parseFloat(document.getElementById('points').value);
+            if (points) {
+                document.getElementById('picas').value = (points / 12).toFixed(4);
+                document.getElementById('inches').value = (points / 72).toFixed(4);
+                document.getElementById('millimeters').value = (points * 0.352778).toFixed(4);
+            }
+
+            isConverting = false;
+        }
+
+        function convertFromPicas() {
+            if (isConverting) return;
+            isConverting = true;
+
+            const picas = parseFloat(document.getElementById('picas').value);
+            if (picas) {
+                document.getElementById('points').value = (picas * 12).toFixed(4);
+                document.getElementById('inches').value = (picas / 6).toFixed(4);
+                document.getElementById('millimeters').value = (picas * 4.233333).toFixed(4);
+            }
+
+            isConverting = false;
+        }
+
+        function convertFromInches() {
+            if (isConverting) return;
+            isConverting = true;
+
+            const inches = parseFloat(document.getElementById('inches').value);
+            if (inches) {
+                document.getElementById('points').value = (inches * 72).toFixed(4);
+                document.getElementById('picas').value = (inches * 6).toFixed(4);
+                document.getElementById('millimeters').value = (inches * 25.4).toFixed(4);
+            }
+
+            isConverting = false;
+        }
+
+        function convertFromMillimeters() {
+            if (isConverting) return;
+            isConverting = true;
+
+            const mm = parseFloat(document.getElementById('millimeters').value);
+            if (mm) {
+                document.getElementById('points').value = (mm / 0.352778).toFixed(4);
+                document.getElementById('picas').value = (mm / 4.233333).toFixed(4);
+                document.getElementById('inches').value = (mm / 25.4).toFixed(4);
+            }
+
+            isConverting = false;
+        }
+
+        function clearConverter() {
+            document.getElementById('points').value = '';
+            document.getElementById('picas').value = '';
+            document.getElementById('inches').value = '';
+            document.getElementById('millimeters').value = '';
+        }
+
+        // ===================================
+        // Leading Calculator
+        // ===================================
+        function calculateLeading() {
+            const numLines = parseInt(document.getElementById('numLines').value);
+            const totalHeight = parseFloat(document.getElementById('totalHeight').value);
+            const unit = document.getElementById('heightUnit').value;
+            const typeSize = parseFloat(document.getElementById('leadingTypeSize').value);
+
+            if (!numLines || !totalHeight || !typeSize) {
+                document.getElementById('leadingValue').textContent = '—';
+                document.getElementById('leadingNotation').textContent = '—';
+                document.getElementById('leadingNote').textContent = '—';
+                return;
+            }
+
+            // Convert total height to points
+            let heightPoints = totalHeight;
+            if (unit === 'picas') {
+                heightPoints = totalHeight * 12;
+            } else if (unit === 'inches') {
+                heightPoints = totalHeight * 72;
+            }
+
+            // Calculate leading
+            // Total height = (number of lines × leading)
+            const leading = heightPoints / numLines;
+            const leadingRounded = Math.round(leading * 10) / 10;
+
+            document.getElementById('leadingValue').textContent = leadingRounded;
+
+            // Traditional notation: typesize/leading (e.g., "12/14" means 12pt type on 14pt leading)
+            document.getElementById('leadingNotation').textContent = `Notation: ${typeSize}/${leadingRounded}`;
+
+            // Calculate and show extra space
+            const extraSpace = leadingRounded - typeSize;
+            let note = '';
+            if (extraSpace < 0) {
+                note = '⚠️ Negative leading - lines will overlap!';
+            } else if (extraSpace < 1) {
+                note = `${extraSpace.toFixed(1)}pt extra space - very tight, solid setting`;
+            } else if (extraSpace < 3) {
+                note = `${extraSpace.toFixed(1)}pt extra space - tight but readable`;
+            } else if (extraSpace <= 5) {
+                note = `${extraSpace.toFixed(1)}pt extra space - comfortable spacing`;
+            } else {
+                note = `${extraSpace.toFixed(1)}pt extra space - generous spacing`;
+            }
+            document.getElementById('leadingNote').textContent = note;
+        }
     </script>
 </body>
 </html>
