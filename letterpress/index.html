@@ -421,6 +421,173 @@
         }
 
         /* ===================================
+           PMS Ink Mixer Styles
+           =================================== */
+        .pms-formula-table {
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .pms-table-header {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1fr;
+            background: rgba(139, 92, 246, 0.2);
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+        }
+
+        .pms-header-cell {
+            padding: 0.75rem;
+            color: var(--primary-purple-light);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .pms-header-cell:first-child {
+            text-align: left;
+        }
+
+        .parts-footnote {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-tertiary);
+            font-style: italic;
+            margin-top: 0.25rem;
+            line-height: 1.2;
+        }
+
+        .pms-table-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1fr 1fr;
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            align-items: center;
+        }
+
+        .pms-table-row:last-child {
+            border-bottom: none;
+        }
+
+        .pms-table-row.mixing-separator {
+            grid-template-columns: 1fr;
+            background: rgba(139, 92, 246, 0.05);
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+        }
+
+        .pms-table-row.total-row {
+            background: rgba(139, 92, 246, 0.15);
+            font-weight: 700;
+        }
+
+        .pms-cell {
+            padding: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .pms-cell.ink-name {
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .pms-cell.percentage-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+
+        .pms-cell.percentage-input input {
+            width: 100%;
+            max-width: 120px;
+            padding: 0.5rem;
+            background: rgba(15, 15, 30, 0.9);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 40%, transparent);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Inter Tight', sans-serif;
+            font-size: 0.875rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pms-cell.percentage-input input:focus {
+            outline: none;
+            border-color: var(--primary-purple-light);
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-purple) 20%, transparent);
+        }
+
+        .percentage-display {
+            display: none;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .percentage-display.calculated {
+            display: inline;
+        }
+
+        /* Hide input when percentage is calculated */
+        .pms-cell.percentage-input:has(.percentage-display.calculated) input {
+            display: none;
+        }
+
+        .pms-cell.parts,
+        .pms-cell.weight {
+            text-align: center;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .pms-cell.parts.calculated,
+        .pms-cell.weight.calculated {
+            color: var(--text-primary);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .total-row .pms-cell {
+            color: var(--primary-purple-light);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .mixing-separator-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+
+        .pms-info-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .pms-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.25rem 0;
+            font-size: 0.875rem;
+        }
+
+        .pms-info-label {
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+
+        .pms-info-value {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* ===================================
            Print Styles
            =================================== */
         .print-header {
@@ -451,23 +618,37 @@
 
             header,
             .tabs,
-            .button-group {
+            .button-group,
+            h2,
+            h3,
+            input[type="text"],
+            input[type="number"],
+            select,
+            label,
+            .ink-percentage-input {
                 display: none !important;
+            }
+
+            /* Show percentage display on print */
+            .percentage-display.calculated {
+                display: inline !important;
+                color: black !important;
+                font-weight: 600;
             }
 
             .print-header {
                 display: flex !important;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 0.5rem;
-                padding-bottom: 0.5rem;
-                border-bottom: 2px solid #333;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.75rem;
+                border-bottom: 3px solid #333;
             }
 
             .print-title {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
                 font-weight: 800;
-                color: #6366f1;
+                color: #000;
                 letter-spacing: -0.02em;
             }
 
@@ -478,14 +659,14 @@
             }
 
             .print-brand img {
-                width: 30px;
-                height: 30px;
+                width: 35px;
+                height: 35px;
             }
 
             .print-brand-name {
-                font-size: 1rem;
+                font-size: 1.1rem;
                 font-weight: 800;
-                color: #6366f1;
+                color: #333;
                 letter-spacing: -0.02em;
             }
 
@@ -608,6 +789,162 @@
             .empty-state {
                 display: none !important;
             }
+
+            /* PMS Mixer Print Styles */
+            .pms-print-header {
+                display: flex !important;
+            }
+
+            .pms-print-info {
+                display: block !important;
+                background: #f9f9f9;
+                border: 2px solid #333;
+                padding: 0.75rem;
+                margin-bottom: 0.75rem;
+                border-radius: 0;
+            }
+
+            .pms-print-info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .pms-print-info-item {
+                font-size: 0.85rem;
+                color: black;
+                line-height: 1.5;
+            }
+
+            .pms-print-info-item strong {
+                color: #333;
+                font-weight: 700;
+            }
+
+            .pms-info-box {
+                background: #fff9e6 !important;
+                border: 2px solid #f0ad4e !important;
+                margin-bottom: 0.75rem;
+                padding: 0.6rem;
+                border-radius: 0;
+            }
+
+            #totalWarning {
+                color: #000 !important;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            #totalWarning div {
+                color: #000 !important;
+            }
+
+            /* Show color information in print */
+            #pms-mixer::before {
+                content: '';
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            #colorName:not(:placeholder-shown),
+            #pmsCode:not(:placeholder-shown),
+            #paperType {
+                color: black !important;
+            }
+
+            .pms-formula-table {
+                display: block !important;
+                border: 2px solid #333;
+                margin-top: 0;
+                border-radius: 0;
+            }
+
+            .pms-table-header {
+                display: grid !important;
+                grid-template-columns: 2fr 1.5fr 1fr 1fr !important;
+                background: #e8e8e8 !important;
+                border-bottom: 3px solid #333;
+            }
+
+            .pms-header-cell {
+                padding: 0.6rem !important;
+                color: #000 !important;
+                font-weight: 700;
+                font-size: 0.85rem;
+                text-align: center;
+            }
+
+            .pms-header-cell:first-child {
+                text-align: left;
+            }
+
+            .pms-table-row {
+                display: grid !important;
+                grid-template-columns: 2fr 1.5fr 1fr 1fr !important;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .pms-table-row:nth-child(even) {
+                background: #fafafa !important;
+            }
+
+            .pms-table-row.mixing-separator {
+                display: block !important;
+                background: #e8e8e8 !important;
+                padding: 0.4rem 0.6rem !important;
+                border-bottom: 2px solid #333;
+                border-top: 1px solid #999;
+            }
+
+            .mixing-separator-label {
+                color: #000 !important;
+                font-weight: 600;
+                font-size: 0.75rem;
+            }
+
+            .pms-table-row.total-row {
+                background: #d4d4d4 !important;
+                border-top: 3px solid #333;
+                border-bottom: none;
+            }
+
+            .pms-cell {
+                padding: 0.5rem !important;
+                color: black !important;
+                font-size: 0.75rem;
+            }
+
+            .pms-cell.ink-name {
+                font-weight: 600;
+            }
+
+            .pms-cell.percentage-input {
+                display: flex !important;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .pms-cell.parts,
+            .pms-cell.weight {
+                text-align: center;
+                font-weight: 600;
+            }
+
+            .total-row .pms-cell {
+                font-weight: 700;
+                font-size: 0.85rem;
+            }
+
+            .parts-footnote {
+                display: block !important;
+                color: #666 !important;
+                font-size: 0.6rem;
+            }
+
+            /* Hide only rows without calculated results */
+            .pms-table-row:has(.pms-cell.parts:not(.calculated)) {
+                display: none !important;
+            }
         }
 
         /* ===================================
@@ -659,6 +996,26 @@
             .button-group {
                 flex-wrap: wrap;
             }
+
+            .pms-table-header {
+                font-size: 0.75rem;
+            }
+
+            .pms-header-cell {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .pms-cell {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+
+            .pms-cell.percentage-input input {
+                max-width: 80px;
+                font-size: 0.75rem;
+                padding: 0.4rem;
+            }
         }
     </style>
 </head>
@@ -680,9 +1037,9 @@
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab-button active" data-tab="character-counter">Character Counter</button>
-            <button class="tab-button" data-tab="line-length">Line Length</button>
-            <button class="tab-button" data-tab="unit-converter">Unit Converter</button>
             <button class="tab-button" data-tab="leading-calc">Leading Calculator</button>
+            <button class="tab-button" data-tab="pms-mixer">PMS Ink Mixer</button>
+            <button class="tab-button" data-tab="unit-converter">Unit Converter</button>
         </div>
 
         <!-- Character Counter Tab -->
@@ -720,38 +1077,35 @@
             </div>
         </div>
 
-        <!-- Line Length Calculator Tab -->
-        <div id="line-length" class="tab-content">
+        <!-- Leading Calculator Tab -->
+        <div id="leading-calc" class="tab-content">
             <div class="app-card">
                 <div class="input-section">
-                    <h2>Line Length Calculator</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Calculate how many characters fit in a given line width.</p>
+                    <h2>Leading Calculator</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Calculate the leading (extra space between lines) needed to fill a specific height.</p>
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                         <div>
-                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Line Width</label>
-                            <input type="number" id="lineWidth" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="30" step="0.1" oninput="calculateLineLength()">
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Type Size (points)</label>
+                            <input type="number" id="leadingTypeSize" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="12" step="0.5" oninput="calculateLeading()">
                         </div>
                         <div>
-                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Unit</label>
-                            <select id="lineWidthUnit" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLineLength()">
-                                <option value="picas">Picas</option>
-                                <option value="inches">Inches</option>
-                            </select>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Number of Lines</label>
+                            <input type="number" id="numLines" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="20" step="1" oninput="calculateLeading()">
                         </div>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                         <div>
-                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Type Size (points)</label>
-                            <input type="number" id="typeSize" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="12" step="0.5" oninput="calculateLineLength()">
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Available Height (space to fill)</label>
+                            <input type="number" id="totalHeight" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="40" step="0.1" oninput="calculateLeading()">
                         </div>
                         <div>
-                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Typeface Width</label>
-                            <select id="typefaceWidth" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLineLength()">
-                                <option value="0.5">Condensed</option>
-                                <option value="0.6" selected>Normal</option>
-                                <option value="0.7">Wide</option>
+                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Unit</label>
+                            <select id="heightUnit" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLeading()">
+                                <option value="picas">Picas</option>
+                                <option value="inches">Inches</option>
+                                <option value="points">Points</option>
                             </select>
                         </div>
                     </div>
@@ -759,14 +1113,114 @@
 
                 <div class="output-section">
                     <h2>Results</h2>
-                    <div id="lineLengthResults" style="padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px; text-align: center;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="charsPerLine">—</div>
-                        <div style="color: var(--text-secondary); font-size: 0.875rem;">characters per line</div>
-                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
-                            <div style="color: var(--text-tertiary); font-size: 0.75rem; margin-bottom: 0.5rem;">Readability Guide:</div>
-                            <div id="readabilityNote" style="color: var(--text-secondary); font-size: 0.875rem;">Enter values to see recommendation</div>
+                    <div id="leadingResults" style="padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 1rem;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="textHeight">—</div>
+                                <div style="color: var(--text-secondary); font-size: 0.875rem;" id="textHeightUnit">text height</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="leadingPerLine">—</div>
+                                <div style="color: var(--text-secondary); font-size: 0.875rem;" id="leadingPerLineUnit">per line</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="totalLeading">—</div>
+                                <div style="color: var(--text-secondary); font-size: 0.875rem;" id="totalLeadingUnit">total leading</div>
+                            </div>
+                        </div>
+                        <div style="padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;" id="leadingNotation">—</div>
+                            <div style="color: var(--text-tertiary); font-size: 0.75rem;" id="leadingNote">—</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PMS Ink Mixer Tab -->
+        <div id="pms-mixer" class="tab-content">
+            <div class="app-card">
+                <h2>PMS<sup>©</sup> Mixing Calculator</h2>
+                <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Convert PANTONE<sup>©</sup> percentages to parts and weights for letterpress ink mixing.</p>
+
+                <!-- Print-only header -->
+                <div class="print-header pms-print-header">
+                    <div class="print-title">PMS<sup>©</sup> Mixing Formula</div>
+                    <div class="print-brand">
+                        <img src="../images/logo.svg" alt="Quoinlock Logo">
+                        <span class="print-brand-name">Quoinlock</span>
+                    </div>
+                </div>
+
+                <!-- Ink System Selection -->
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Ink System</label>
+                    <select id="inkSystem" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="updateInkSystem()">
+                        <option value="current">Current Base Inks (11 Color, >2023)</option>
+                        <option value="legacy">Legacy Base Inks (18 Color, <2023)</option>
+                    </select>
+                </div>
+
+                <!-- Color Information -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div>
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Color Name</label>
+                        <input type="text" id="colorName" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="e.g., Ultraviolet">
+                    </div>
+                    <div>
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">PMS<sup>©</sup> Code</label>
+                        <input type="text" id="pmsCode" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="e.g., 3838">
+                    </div>
+                    <div>
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Paper Type</label>
+                        <select id="paperType" class="text-input" style="min-height: auto; padding: 0.5rem;">
+                            <option value="coated">Coated</option>
+                            <option value="uncoated">Uncoated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Ink Yield -->
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Ink Yield (grams)</label>
+                    <input type="number" id="inkYield" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="20" value="20" step="1" min="1">
+                </div>
+
+                <!-- Result Info Box (hidden until calculated) -->
+                <div id="pmsInfoBox" class="pms-info-box" style="display: none;">
+                    <div id="totalWarning"></div>
+                </div>
+
+                <!-- Print-only info display -->
+                <div class="pms-print-info" style="display: none;">
+                    <div class="pms-print-info-grid">
+                        <div class="pms-print-info-item">
+                            <strong>Color Name:</strong> <span id="printColorName"></span>
+                        </div>
+                        <div class="pms-print-info-item">
+                            <strong>PMS<sup>©</sup> Code:</strong> <span id="printPmsCode"></span>
+                        </div>
+                        <div class="pms-print-info-item">
+                            <strong>Paper Type:</strong> <span id="printPaperType"></span>
+                        </div>
+                        <div class="pms-print-info-item">
+                            <strong>Ink Yield:</strong> <span id="printInkYield"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combined Ink Formula Table -->
+                <div style="margin-bottom: 1rem;">
+                    <h3 style="font-size: 0.875rem; font-weight: 600; color: var(--primary-purple-light); margin-bottom: 0.75rem;">Ink Mixing Formula</h3>
+                    <div id="inkFormulaTable">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="calculatePMS()">Calculate</button>
+                    <button class="btn btn-secondary" onclick="clearPMS()">Clear All</button>
+                    <button class="btn btn-secondary" onclick="window.print()">Print Formula</button>
                 </div>
             </div>
         </div>
@@ -808,55 +1262,6 @@
                         <div style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-purple-light);">1 inch</strong> = 72 points = 6 picas = 25.4mm</div>
                         <div style="margin-bottom: 0.5rem;"><strong style="color: var(--primary-purple-light);">1 pica</strong> = 12 points = 1/6 inch = 4.23mm</div>
                         <div><strong style="color: var(--primary-purple-light);">1 point</strong> = 1/72 inch = 0.35mm</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Leading Calculator Tab -->
-        <div id="leading-calc" class="tab-content">
-            <div class="app-card">
-                <div class="input-section">
-                    <h2>Leading Calculator</h2>
-                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">Calculate leading (line spacing) for your layout.</p>
-
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Number of Lines</label>
-                        <input type="number" id="numLines" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="20" step="1" oninput="calculateLeading()">
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                        <div>
-                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Total Height</label>
-                            <input type="number" id="totalHeight" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="40" step="0.1" oninput="calculateLeading()">
-                        </div>
-                        <div>
-                            <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Unit</label>
-                            <select id="heightUnit" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="calculateLeading()">
-                                <option value="picas">Picas</option>
-                                <option value="inches">Inches</option>
-                                <option value="points">Points</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Type Size (points)</label>
-                        <input type="number" id="leadingTypeSize" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="12" step="0.5" oninput="calculateLeading()">
-                    </div>
-                </div>
-
-                <div class="output-section">
-                    <h2>Results</h2>
-                    <div id="leadingResults" style="padding: 1.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 8px;">
-                        <div style="text-align: center; margin-bottom: 1rem;">
-                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-purple-light); margin-bottom: 0.5rem;" id="leadingValue">—</div>
-                            <div style="color: var(--text-secondary); font-size: 0.875rem;">points leading</div>
-                        </div>
-                        <div style="padding-top: 1rem; border-top: 1px solid rgba(139, 92, 246, 0.2);">
-                            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;" id="leadingNotation">—</div>
-                            <div style="color: var(--text-tertiary); font-size: 0.75rem;" id="leadingNote">—</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -989,51 +1394,6 @@
         });
 
         // ===================================
-        // Line Length Calculator
-        // ===================================
-        function calculateLineLength() {
-            const lineWidth = parseFloat(document.getElementById('lineWidth').value);
-            const unit = document.getElementById('lineWidthUnit').value;
-            const typeSize = parseFloat(document.getElementById('typeSize').value);
-            const widthFactor = parseFloat(document.getElementById('typefaceWidth').value);
-
-            if (!lineWidth || !typeSize) {
-                document.getElementById('charsPerLine').textContent = '—';
-                document.getElementById('readabilityNote').textContent = 'Enter values to see recommendation';
-                return;
-            }
-
-            // Convert to points
-            let lineWidthPoints = lineWidth;
-            if (unit === 'picas') {
-                lineWidthPoints = lineWidth * 12; // 1 pica = 12 points
-            } else if (unit === 'inches') {
-                lineWidthPoints = lineWidth * 72; // 1 inch = 72 points
-            }
-
-            // Average character width is approximately 0.6 times the type size for normal typefaces
-            const avgCharWidth = typeSize * widthFactor;
-            const charsPerLine = Math.floor(lineWidthPoints / avgCharWidth);
-
-            document.getElementById('charsPerLine').textContent = charsPerLine;
-
-            // Readability guidance (45-75 characters is generally considered optimal)
-            let note = '';
-            if (charsPerLine < 35) {
-                note = '⚠️ Too short - lines may be choppy and hard to read';
-            } else if (charsPerLine < 45) {
-                note = '📏 Slightly short - acceptable for narrow columns';
-            } else if (charsPerLine <= 75) {
-                note = '✓ Optimal - good readability';
-            } else if (charsPerLine <= 90) {
-                note = '📏 Slightly long - may strain eye tracking';
-            } else {
-                note = '⚠️ Too long - difficult to track from line to line';
-            }
-            document.getElementById('readabilityNote').textContent = note;
-        }
-
-        // ===================================
         // Unit Converter
         // ===================================
         let isConverting = false;
@@ -1106,51 +1466,409 @@
         // ===================================
         function calculateLeading() {
             const numLines = parseInt(document.getElementById('numLines').value);
-            const totalHeight = parseFloat(document.getElementById('totalHeight').value);
+            const availableHeight = parseFloat(document.getElementById('totalHeight').value);
             const unit = document.getElementById('heightUnit').value;
             const typeSize = parseFloat(document.getElementById('leadingTypeSize').value);
 
-            if (!numLines || !totalHeight || !typeSize) {
-                document.getElementById('leadingValue').textContent = '—';
+            if (!numLines || !availableHeight || !typeSize) {
+                document.getElementById('textHeight').textContent = '—';
+                document.getElementById('textHeightUnit').textContent = 'text height';
+                document.getElementById('leadingPerLine').textContent = '—';
+                document.getElementById('leadingPerLineUnit').textContent = 'per line';
+                document.getElementById('totalLeading').textContent = '—';
+                document.getElementById('totalLeadingUnit').textContent = 'total leading';
                 document.getElementById('leadingNotation').textContent = '—';
                 document.getElementById('leadingNote').textContent = '—';
                 return;
             }
 
-            // Convert total height to points
-            let heightPoints = totalHeight;
+            // Convert available height to points
+            let availableHeightPoints = availableHeight;
             if (unit === 'picas') {
-                heightPoints = totalHeight * 12;
+                availableHeightPoints = availableHeight * 12;
             } else if (unit === 'inches') {
-                heightPoints = totalHeight * 72;
+                availableHeightPoints = availableHeight * 72;
             }
 
-            // Calculate leading
-            // Total height = (number of lines × leading)
-            const leading = heightPoints / numLines;
-            const leadingRounded = Math.round(leading * 10) / 10;
+            // Calculate the actual text height (type size × number of lines)
+            const textHeightPoints = typeSize * numLines;
 
-            document.getElementById('leadingValue').textContent = leadingRounded;
+            // Calculate total leading needed (available height - text height)
+            const totalLeadingPoints = availableHeightPoints - textHeightPoints;
 
-            // Traditional notation: typesize/leading (e.g., "12/14" means 12pt type on 14pt leading)
-            document.getElementById('leadingNotation').textContent = `Notation: ${typeSize}/${leadingRounded}`;
+            // Calculate leading per line
+            const leadingPerLinePoints = totalLeadingPoints / numLines;
+            const leadingPerLineRounded = Math.round(leadingPerLinePoints * 10) / 10;
 
-            // Calculate and show extra space
-            const extraSpace = leadingRounded - typeSize;
-            let note = '';
-            if (extraSpace < 0) {
-                note = '⚠️ Negative leading - lines will overlap!';
-            } else if (extraSpace < 1) {
-                note = `${extraSpace.toFixed(1)}pt extra space - very tight, solid setting`;
-            } else if (extraSpace < 3) {
-                note = `${extraSpace.toFixed(1)}pt extra space - tight but readable`;
-            } else if (extraSpace <= 5) {
-                note = `${extraSpace.toFixed(1)}pt extra space - comfortable spacing`;
+            // Display text height
+            if (textHeightPoints > 6) {
+                const textHeightPicas = textHeightPoints / 12;
+                const roundedPicas = Math.round(textHeightPicas * 2) / 2;
+                document.getElementById('textHeight').textContent = roundedPicas.toFixed(1).replace(/\.0$/, '');
+                document.getElementById('textHeightUnit').textContent = 'text height (picas)';
             } else {
-                note = `${extraSpace.toFixed(1)}pt extra space - generous spacing`;
+                document.getElementById('textHeight').textContent = Math.round(textHeightPoints * 10) / 10;
+                document.getElementById('textHeightUnit').textContent = 'text height (points)';
+            }
+
+            // Display leading per line
+            if (leadingPerLineRounded > 6) {
+                const leadingPicas = leadingPerLineRounded / 12;
+                const roundedPicas = Math.round(leadingPicas * 2) / 2;
+                document.getElementById('leadingPerLine').textContent = roundedPicas.toFixed(1).replace(/\.0$/, '');
+                document.getElementById('leadingPerLineUnit').textContent = 'picas per line';
+            } else {
+                document.getElementById('leadingPerLine').textContent = leadingPerLineRounded;
+                document.getElementById('leadingPerLineUnit').textContent = 'points per line';
+            }
+
+            // Display total leading
+            if (totalLeadingPoints > 6) {
+                const totalPicas = totalLeadingPoints / 12;
+                const roundedPicas = Math.round(totalPicas * 2) / 2;
+                document.getElementById('totalLeading').textContent = roundedPicas.toFixed(1).replace(/\.0$/, '');
+                document.getElementById('totalLeadingUnit').textContent = 'total leading (picas)';
+            } else {
+                document.getElementById('totalLeading').textContent = Math.round(totalLeadingPoints * 10) / 10;
+                document.getElementById('totalLeadingUnit').textContent = 'total leading (points)';
+            }
+
+            // Traditional notation: typesize/lineheight (e.g., "12/14" means 12pt type with 2pt leading = 14pt line height)
+            const lineHeight = typeSize + leadingPerLineRounded;
+            document.getElementById('leadingNotation').textContent = `Notation: ${typeSize}/${lineHeight.toFixed(1)}`;
+
+            // Show note about the leading
+            let note = '';
+            if (totalLeadingPoints < 0) {
+                note = '⚠️ Negative leading - not enough space! Reduce type size or increase available height.';
+            } else if (leadingPerLineRounded < 0.5) {
+                note = `Very tight spacing - essentially solid setting`;
+            } else if (leadingPerLineRounded < 2) {
+                note = `Tight but readable - ${leadingPerLineRounded.toFixed(1)}pt extra space per line`;
+            } else if (leadingPerLineRounded <= 4) {
+                note = `Comfortable spacing - ${leadingPerLineRounded.toFixed(1)}pt extra space per line`;
+            } else {
+                note = `Generous spacing - ${leadingPerLineRounded.toFixed(1)}pt extra space per line`;
             }
             document.getElementById('leadingNote').textContent = note;
         }
+
+        // ===================================
+        // PMS Ink Mixer
+        // ===================================
+        const inkSystems = {
+            current: {
+                base: [
+                    'Black',
+                    'Green',
+                    'Orange 016',
+                    'Pink',
+                    'Process Blue',
+                    'Purple v2',
+                    'Real Purple',
+                    'Rubine Red',
+                    'Violet v2',
+                    'Warm Red',
+                    'Yellow PY12'
+                ],
+                mixing: [
+                    'Opq. White',
+                    'Trans. White'
+                ]
+            },
+            legacy: {
+                base: [
+                    'Black',
+                    'Blue 072',
+                    'Bright Red',
+                    'Dark Blue',
+                    'Green',
+                    'Med. Purple',
+                    'Orange 021',
+                    'Pink',
+                    'Process Blue',
+                    'Purple',
+                    'Red 032',
+                    'Reflex Blue',
+                    'Rhod. Red',
+                    'Rubine Red',
+                    'Violet',
+                    'Warm Red',
+                    'Yellow 012',
+                    'Yellow'
+                ],
+                mixing: [
+                    'Opq. White',
+                    'Trans. White'
+                ]
+            }
+        };
+
+        function updateInkSystem() {
+            const system = document.getElementById('inkSystem').value;
+            const baseInks = inkSystems[system].base;
+            const mixingInks = inkSystems[system].mixing;
+            const tableDiv = document.getElementById('inkFormulaTable');
+
+            // Generate table header
+            let tableHTML = `
+                <div class="pms-formula-table">
+                    <div class="pms-table-header">
+                        <div class="pms-header-cell">Base Ink</div>
+                        <div class="pms-header-cell">Percentage (%)</div>
+                        <div class="pms-header-cell">Parts<span class="parts-footnote">Simplified approximation of PMS<sup>©</sup> formula</span></div>
+                        <div class="pms-header-cell">Weight (g)</div>
+                    </div>
+            `;
+
+            // Generate rows for base inks
+            baseInks.forEach(ink => {
+                tableHTML += `
+                    <div class="pms-table-row" data-ink="${ink}">
+                        <div class="pms-cell ink-name">${ink}</div>
+                        <div class="pms-cell percentage-input">
+                            <input
+                                type="number"
+                                class="ink-percentage-input"
+                                data-ink="${ink}"
+                                placeholder="0.0"
+                                step="0.01"
+                                min="0"
+                                max="100"
+                            >
+                            <span class="percentage-display" data-percentage="${ink}"></span>
+                        </div>
+                        <div class="pms-cell parts" data-parts="${ink}">—</div>
+                        <div class="pms-cell weight" data-weight="${ink}">—</div>
+                    </div>
+                `;
+            });
+
+            // Add mixing colors separator
+            tableHTML += `
+                <div class="pms-table-row mixing-separator">
+                    <div class="mixing-separator-label">Mixing Colors</div>
+                </div>
+            `;
+
+            // Generate rows for mixing inks
+            mixingInks.forEach(ink => {
+                tableHTML += `
+                    <div class="pms-table-row" data-ink="${ink}">
+                        <div class="pms-cell ink-name">${ink}</div>
+                        <div class="pms-cell percentage-input">
+                            <input
+                                type="number"
+                                class="ink-percentage-input"
+                                data-ink="${ink}"
+                                placeholder="0.0"
+                                step="0.01"
+                                min="0"
+                                max="100"
+                            >
+                            <span class="percentage-display" data-percentage="${ink}"></span>
+                        </div>
+                        <div class="pms-cell parts" data-parts="${ink}">—</div>
+                        <div class="pms-cell weight" data-weight="${ink}">—</div>
+                    </div>
+                `;
+            });
+
+            // Add total row
+            tableHTML += `
+                <div class="pms-table-row total-row">
+                    <div class="pms-cell ink-name">TOTAL</div>
+                    <div class="pms-cell">—</div>
+                    <div class="pms-cell parts" id="totalParts">—</div>
+                    <div class="pms-cell weight" id="totalWeight">—</div>
+                </div>
+            `;
+
+            tableHTML += `</div>`;
+            tableDiv.innerHTML = tableHTML;
+        }
+
+        // Helper function to calculate GCD
+        function gcd(a, b) {
+            return b === 0 ? a : gcd(b, a % b);
+        }
+
+        // Helper function to find GCD of an array of numbers
+        function findGCD(numbers) {
+            return numbers.reduce((a, b) => gcd(a, b));
+        }
+
+        function calculatePMS() {
+            const colorName = document.getElementById('colorName').value;
+            const pmsCode = document.getElementById('pmsCode').value;
+            const paperType = document.getElementById('paperType').value;
+            const inkYield = parseFloat(document.getElementById('inkYield').value) || 20;
+
+            // Collect all percentages
+            const inkInputs = document.querySelectorAll('.ink-percentage-input');
+            const inkData = [];
+            let totalPercentage = 0;
+
+            inkInputs.forEach(input => {
+                const percentage = parseFloat(input.value) || 0;
+                if (percentage > 0) {
+                    inkData.push({
+                        name: input.dataset.ink,
+                        percentage: percentage
+                    });
+                    totalPercentage += percentage;
+                }
+            });
+
+            // Validate
+            const warningDiv = document.getElementById('totalWarning');
+            const infoBox = document.getElementById('pmsInfoBox');
+
+            if (inkData.length === 0) {
+                alert('Please enter at least one percentage value.');
+                return;
+            }
+
+            // Update print-only info display
+            document.getElementById('printColorName').textContent = colorName || 'N/A';
+            document.getElementById('printPmsCode').textContent = pmsCode || 'N/A';
+            document.getElementById('printPaperType').textContent = paperType.charAt(0).toUpperCase() + paperType.slice(1);
+            document.getElementById('printInkYield').textContent = inkYield + 'g';
+
+            // Calculate parts (normalize if percentages don't sum to 100)
+            const normalizationFactor = 100 / totalPercentage;
+
+            inkData.forEach(ink => {
+                ink.normalizedPercentage = ink.percentage * normalizationFactor;
+            });
+
+            // Convert percentages to simplified parts
+            // Multiply by 100 to work with integers for GCD calculation
+            const integerParts = inkData.map(ink => Math.round(ink.normalizedPercentage * 100));
+            const divisor = findGCD(integerParts);
+
+            let totalSimplifiedParts = 0;
+            inkData.forEach((ink, index) => {
+                ink.simplifiedParts = integerParts[index] / divisor;
+                totalSimplifiedParts += ink.simplifiedParts;
+            });
+
+            // Aggressive simplification: limit max individual part to 10
+            // Allow half parts (0.5 increments)
+            const MAX_INDIVIDUAL_PART = 10;
+            const maxPart = Math.max(...inkData.map(ink => ink.simplifiedParts));
+
+            if (maxPart > MAX_INDIVIDUAL_PART) {
+                const scaleFactor = maxPart / MAX_INDIVIDUAL_PART;
+                totalSimplifiedParts = 0;
+
+                inkData.forEach(ink => {
+                    // Scale down and round to nearest 0.5
+                    const scaledPart = ink.simplifiedParts / scaleFactor;
+                    ink.simplifiedParts = Math.round(scaledPart * 2) / 2;
+
+                    // Ensure at least 0.5 parts if percentage was non-zero
+                    if (ink.simplifiedParts < 0.5 && ink.normalizedPercentage > 0) {
+                        ink.simplifiedParts = 0.5;
+                    }
+                    totalSimplifiedParts += ink.simplifiedParts;
+                });
+            }
+
+            // Calculate weights based on ink yield
+            inkData.forEach(ink => {
+                ink.weight = (ink.simplifiedParts / totalSimplifiedParts) * inkYield;
+            });
+
+            // Clear all previous results
+            document.querySelectorAll('[data-parts], [data-weight]').forEach(cell => {
+                if (!cell.id) {
+                    cell.textContent = '—';
+                    cell.classList.remove('calculated');
+                }
+            });
+            document.querySelectorAll('.percentage-display').forEach(span => {
+                span.textContent = '';
+                span.classList.remove('calculated');
+            });
+
+            // Update each ink's percentage, parts and weight in the table
+            inkData.forEach(ink => {
+                const percentageSpan = document.querySelector(`[data-percentage="${ink.name}"]`);
+                const partsCell = document.querySelector(`[data-parts="${ink.name}"]`);
+                const weightCell = document.querySelector(`[data-weight="${ink.name}"]`);
+
+                if (percentageSpan) {
+                    percentageSpan.textContent = `${ink.normalizedPercentage.toFixed(2)}%`;
+                    percentageSpan.classList.add('calculated');
+                }
+
+                if (partsCell) {
+                    // Format parts: show "1" instead of "1.0", but keep "0.5"
+                    const partsText = ink.simplifiedParts.toFixed(1).replace(/\.0$/, '');
+                    partsCell.textContent = partsText;
+                    partsCell.classList.add('calculated');
+                }
+
+                if (weightCell) {
+                    weightCell.textContent = `${ink.weight.toFixed(2)}g`;
+                    weightCell.classList.add('calculated');
+                }
+            });
+
+            // Update totals (round to 1 decimal for half parts)
+            document.getElementById('totalParts').textContent = totalSimplifiedParts.toFixed(1).replace(/\.0$/, '');
+            document.getElementById('totalWeight').textContent = `${inkYield.toFixed(2)}g`;
+
+            // Show warning if percentages don't sum to 100
+            if (Math.abs(totalPercentage - 100) > 0.1) {
+                warningDiv.innerHTML = `
+                    <div style="color: var(--text-tertiary); font-size: 0.75rem;">
+                        ⚠️ Note: Percentages totaled ${totalPercentage.toFixed(2)}% and were normalized to 100%
+                    </div>
+                `;
+                infoBox.style.display = 'block';
+            } else {
+                warningDiv.innerHTML = '';
+                infoBox.style.display = 'none';
+            }
+        }
+
+        function clearPMS() {
+            document.getElementById('colorName').value = '';
+            document.getElementById('pmsCode').value = '';
+            document.getElementById('paperType').value = 'coated';
+            document.getElementById('inkYield').value = '20';
+            document.getElementById('inkSystem').value = 'current';
+
+            // Clear all percentage inputs
+            document.querySelectorAll('.ink-percentage-input').forEach(input => {
+                input.value = '';
+            });
+
+            // Clear all percentage displays
+            document.querySelectorAll('.percentage-display').forEach(span => {
+                span.textContent = '';
+                span.classList.remove('calculated');
+            });
+
+            // Clear all results
+            document.querySelectorAll('[data-parts], [data-weight]').forEach(cell => {
+                cell.textContent = '—';
+                cell.classList.remove('calculated');
+            });
+
+            // Hide info box
+            document.getElementById('pmsInfoBox').style.display = 'none';
+            document.getElementById('totalWarning').innerHTML = '';
+
+            updateInkSystem();
+        }
+
+        // Initialize PMS Mixer with current system on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateInkSystem();
+        });
     </script>
 </body>
 </html>
