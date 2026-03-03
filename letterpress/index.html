@@ -790,6 +790,10 @@
                 display: none !important;
             }
 
+            #shareNotification {
+                display: none !important;
+            }
+
             /* PMS Mixer Print Styles */
             .pms-print-header {
                 display: flex !important;
@@ -928,6 +932,8 @@
             .pms-cell.weight {
                 text-align: center;
                 font-weight: 600;
+                color: black !important;
+                font-style: normal !important;
             }
 
             .total-row .pms-cell {
@@ -1157,7 +1163,7 @@
                     <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Ink System</label>
                     <select id="inkSystem" class="text-input" style="min-height: auto; padding: 0.5rem;" onchange="updateInkSystem()">
                         <option value="current">Current Base Inks (11 Color, >2023)</option>
-                        <option value="legacy">Legacy Base Inks (18 Color, <2023)</option>
+                        <option value="legacy" selected>Legacy Base Inks (18 Color, <2023)</option>
                     </select>
                 </div>
 
@@ -1175,15 +1181,25 @@
                         <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Paper Type</label>
                         <select id="paperType" class="text-input" style="min-height: auto; padding: 0.5rem;">
                             <option value="coated">Coated</option>
-                            <option value="uncoated">Uncoated</option>
+                            <option value="uncoated" selected>Uncoated</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Ink Yield -->
-                <div style="margin-bottom: 1rem;">
-                    <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Ink Yield (grams)</label>
-                    <input type="number" id="inkYield" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="20" value="20" step="1" min="1">
+                <!-- Ink Yield and Scale Accuracy -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div>
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Ink Yield (grams)</label>
+                        <input type="number" id="inkYield" class="text-input" style="min-height: auto; padding: 0.5rem;" placeholder="20" value="20" step="1" min="1">
+                    </div>
+                    <div>
+                        <label style="display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">Scale Accuracy (grams)</label>
+                        <select id="scaleAccuracy" class="text-input" style="min-height: auto; padding: 0.5rem;">
+                            <option value="0.1">0.1g (precise scale)</option>
+                            <option value="0.25" selected>0.25g (standard scale)</option>
+                            <option value="0.5">0.5g (basic scale)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Result Info Box (hidden until calculated) -->
@@ -1206,6 +1222,9 @@
                         <div class="pms-print-info-item">
                             <strong>Ink Yield:</strong> <span id="printInkYield"></span>
                         </div>
+                        <div class="pms-print-info-item">
+                            <strong>Scale Accuracy:</strong> <span id="printScaleAccuracy"></span>
+                        </div>
                     </div>
                 </div>
 
@@ -1220,7 +1239,13 @@
                 <div class="button-group">
                     <button class="btn btn-primary" onclick="calculatePMS()">Calculate</button>
                     <button class="btn btn-secondary" onclick="clearPMS()">Clear All</button>
+                    <button class="btn btn-secondary" onclick="sharePMS()">Share</button>
                     <button class="btn btn-secondary" onclick="window.print()">Print Formula</button>
+                </div>
+
+                <!-- Share notification -->
+                <div id="shareNotification" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(134, 239, 172, 0.2); border: 1px solid var(--success-green); border-radius: 8px; color: var(--success-green); font-size: 0.875rem; font-weight: 600; text-align: center; animation: fadeIn 0.3s;">
+                    ✓ Link copied to clipboard!
                 </div>
             </div>
         </div>
@@ -1703,6 +1728,7 @@
             const pmsCode = document.getElementById('pmsCode').value;
             const paperType = document.getElementById('paperType').value;
             const inkYield = parseFloat(document.getElementById('inkYield').value) || 20;
+            const scaleAccuracy = parseFloat(document.getElementById('scaleAccuracy').value);
 
             // Collect all percentages
             const inkInputs = document.querySelectorAll('.ink-percentage-input');
@@ -1729,12 +1755,6 @@
                 return;
             }
 
-            // Update print-only info display
-            document.getElementById('printColorName').textContent = colorName || 'N/A';
-            document.getElementById('printPmsCode').textContent = pmsCode || 'N/A';
-            document.getElementById('printPaperType').textContent = paperType.charAt(0).toUpperCase() + paperType.slice(1);
-            document.getElementById('printInkYield').textContent = inkYield + 'g';
-
             // Calculate parts (normalize if percentages don't sum to 100)
             const normalizationFactor = 100 / totalPercentage;
 
@@ -1753,31 +1773,68 @@
                 totalSimplifiedParts += ink.simplifiedParts;
             });
 
-            // Aggressive simplification: limit max individual part to 10
-            // Allow half parts (0.5 increments)
-            const MAX_INDIVIDUAL_PART = 10;
-            const maxPart = Math.max(...inkData.map(ink => ink.simplifiedParts));
+            // Smart simplification: target 8 or 16 total parts
+            // Allow quarter parts (0.25 increments)
+            const TARGET_PARTS = [16, 8]; // Prefer 16, fall back to 8
+            let bestSimplification = null;
+            let bestError = Infinity;
 
-            if (maxPart > MAX_INDIVIDUAL_PART) {
-                const scaleFactor = maxPart / MAX_INDIVIDUAL_PART;
-                totalSimplifiedParts = 0;
+            for (const targetTotal of TARGET_PARTS) {
+                const testParts = [];
+                let testTotal = 0;
+                let maxIndividualPart = 0;
 
                 inkData.forEach(ink => {
-                    // Scale down and round to nearest 0.5
-                    const scaledPart = ink.simplifiedParts / scaleFactor;
-                    ink.simplifiedParts = Math.round(scaledPart * 2) / 2;
+                    // Calculate parts proportional to target
+                    const proportionalPart = (ink.normalizedPercentage / 100) * targetTotal;
+                    // Round to nearest 0.25
+                    let roundedPart = Math.round(proportionalPart * 4) / 4;
 
-                    // Ensure at least 0.5 parts if percentage was non-zero
-                    if (ink.simplifiedParts < 0.5 && ink.normalizedPercentage > 0) {
-                        ink.simplifiedParts = 0.5;
+                    // Ensure at least 0.25 parts if percentage was non-zero
+                    if (roundedPart < 0.25 && ink.normalizedPercentage > 0) {
+                        roundedPart = 0.25;
                     }
+
+                    testParts.push(roundedPart);
+                    testTotal += roundedPart;
+                    maxIndividualPart = Math.max(maxIndividualPart, roundedPart);
+                });
+
+                // Calculate error from original percentages
+                let error = 0;
+                inkData.forEach((ink, index) => {
+                    const resultPercentage = (testParts[index] / testTotal) * 100;
+                    error += Math.abs(resultPercentage - ink.normalizedPercentage);
+                });
+
+                // Prefer lower error, but also prefer 16 parts over 8 if error is similar
+                const errorWithPreference = error + (targetTotal === 8 ? 1 : 0);
+
+                if (errorWithPreference < bestError && maxIndividualPart <= targetTotal) {
+                    bestError = errorWithPreference;
+                    bestSimplification = {
+                        parts: testParts,
+                        total: testTotal
+                    };
+                }
+            }
+
+            // Apply best simplification
+            if (bestSimplification) {
+                totalSimplifiedParts = 0;
+                inkData.forEach((ink, index) => {
+                    ink.simplifiedParts = bestSimplification.parts[index];
                     totalSimplifiedParts += ink.simplifiedParts;
                 });
             }
 
-            // Calculate weights based on ink yield
+            // Calculate weights based on ink yield and round to scale accuracy
             inkData.forEach(ink => {
-                ink.weight = (ink.simplifiedParts / totalSimplifiedParts) * inkYield;
+                const rawWeight = (ink.simplifiedParts / totalSimplifiedParts) * inkYield;
+                // Round to scale accuracy increment
+                ink.weight = Math.round(rawWeight / scaleAccuracy) * scaleAccuracy;
+                // Store raw weight for display purposes
+                ink.rawWeight = rawWeight;
             });
 
             // Clear all previous results
@@ -1804,29 +1861,74 @@
                 }
 
                 if (partsCell) {
-                    // Format parts: show "1" instead of "1.0", but keep "0.5"
-                    const partsText = ink.simplifiedParts.toFixed(1).replace(/\.0$/, '');
+                    // Format parts: show "1" instead of "1.0", but keep "0.25", "0.5", "0.75"
+                    const partsText = ink.simplifiedParts.toFixed(2).replace(/\.00$/, '').replace(/0$/, '');
                     partsCell.textContent = partsText;
                     partsCell.classList.add('calculated');
                 }
 
                 if (weightCell) {
-                    weightCell.textContent = `${ink.weight.toFixed(2)}g`;
+                    // Show "trace" for weights that round to 0
+                    if (ink.weight === 0 || ink.weight < scaleAccuracy) {
+                        weightCell.textContent = `trace (~${ink.rawWeight.toFixed(2)}g)`;
+                        weightCell.style.fontStyle = 'italic';
+                        weightCell.style.color = 'var(--text-tertiary)';
+                    } else {
+                        // Display rounded weight with appropriate precision
+                        const decimalPlaces = scaleAccuracy < 1 ? 2 : 0;
+                        weightCell.textContent = `${ink.weight.toFixed(decimalPlaces)}g`;
+                        weightCell.style.fontStyle = 'normal';
+                        weightCell.style.color = '';
+                    }
                     weightCell.classList.add('calculated');
                 }
             });
 
-            // Update totals (round to 1 decimal for half parts)
-            document.getElementById('totalParts').textContent = totalSimplifiedParts.toFixed(1).replace(/\.0$/, '');
-            document.getElementById('totalWeight').textContent = `${inkYield.toFixed(2)}g`;
+            // Calculate total of rounded weights
+            const totalRoundedWeight = inkData.reduce((sum, ink) => sum + ink.weight, 0);
 
-            // Show warning if percentages don't sum to 100
+            // Update print-only info display
+            document.getElementById('printColorName').textContent = colorName || 'N/A';
+            document.getElementById('printPmsCode').textContent = pmsCode || 'N/A';
+            document.getElementById('printPaperType').textContent = paperType.charAt(0).toUpperCase() + paperType.slice(1);
+            const printDecimalPlaces = scaleAccuracy < 1 ? 2 : 0;
+            document.getElementById('printInkYield').textContent = totalRoundedWeight.toFixed(printDecimalPlaces) + 'g';
+            document.getElementById('printScaleAccuracy').textContent = scaleAccuracy + 'g';
+
+            // Update totals (round to 1 decimal for half parts)
+            document.getElementById('totalParts').textContent = totalSimplifiedParts.toFixed(2).replace(/\.00$/, '').replace(/0$/, '');
+            const decimalPlaces = scaleAccuracy < 1 ? 2 : 0;
+            document.getElementById('totalWeight').textContent = `${totalRoundedWeight.toFixed(decimalPlaces)}g`;
+
+            // Check if any weights are trace amounts (rounded to 0 or below scale accuracy)
+            const hasTraceAmounts = inkData.some(ink => ink.weight === 0 || ink.weight < scaleAccuracy);
+
+            // Show warning if percentages don't sum to 100 or if there are trace amounts
+            let warningHTML = '';
             if (Math.abs(totalPercentage - 100) > 0.1) {
-                warningDiv.innerHTML = `
-                    <div style="color: var(--text-tertiary); font-size: 0.75rem;">
+                warningHTML += `
+                    <div style="color: var(--text-tertiary); font-size: 0.75rem; margin-bottom: 0.5rem;">
                         ⚠️ Note: Percentages totaled ${totalPercentage.toFixed(2)}% and were normalized to 100%
                     </div>
                 `;
+            }
+            if (Math.abs(totalRoundedWeight - inkYield) > scaleAccuracy) {
+                warningHTML += `
+                    <div style="color: var(--text-tertiary); font-size: 0.75rem; margin-bottom: 0.5rem;">
+                        ℹ️ Note: Total weight rounded to ${totalRoundedWeight.toFixed(decimalPlaces)}g (target: ${inkYield}g) based on ${scaleAccuracy}g scale accuracy
+                    </div>
+                `;
+            }
+            if (hasTraceAmounts) {
+                warningHTML += `
+                    <div style="color: var(--text-tertiary); font-size: 0.75rem;">
+                        💡 Tip: "trace" amounts are below your scale accuracy (${scaleAccuracy}g). Add a small dot or two of pigment, visually assessed.
+                    </div>
+                `;
+            }
+
+            if (warningHTML) {
+                warningDiv.innerHTML = warningHTML;
                 infoBox.style.display = 'block';
             } else {
                 warningDiv.innerHTML = '';
@@ -1837,9 +1939,9 @@
         function clearPMS() {
             document.getElementById('colorName').value = '';
             document.getElementById('pmsCode').value = '';
-            document.getElementById('paperType').value = 'coated';
+            document.getElementById('paperType').value = 'uncoated';
             document.getElementById('inkYield').value = '20';
-            document.getElementById('inkSystem').value = 'current';
+            document.getElementById('inkSystem').value = 'legacy';
 
             // Clear all percentage inputs
             document.querySelectorAll('.ink-percentage-input').forEach(input => {
@@ -1865,9 +1967,121 @@
             updateInkSystem();
         }
 
+        // Share PMS formula via URL
+        function sharePMS() {
+            const params = new URLSearchParams();
+
+            // Add tab parameter to switch to PMS mixer
+            params.set('tab', 'pms-mixer');
+
+            // Add basic settings
+            const colorName = document.getElementById('colorName').value;
+            const pmsCode = document.getElementById('pmsCode').value;
+            const paperType = document.getElementById('paperType').value;
+            const inkYield = document.getElementById('inkYield').value;
+            const scaleAccuracy = document.getElementById('scaleAccuracy').value;
+            const inkSystem = document.getElementById('inkSystem').value;
+
+            if (colorName) params.set('name', colorName);
+            if (pmsCode) params.set('code', pmsCode);
+            params.set('paper', paperType);
+            params.set('yield', inkYield);
+            params.set('scale', scaleAccuracy);
+            params.set('system', inkSystem);
+
+            // Add ink percentages
+            const inkInputs = document.querySelectorAll('.ink-percentage-input');
+            const inks = {};
+            inkInputs.forEach(input => {
+                const percentage = parseFloat(input.value);
+                if (percentage > 0) {
+                    inks[input.dataset.ink] = percentage;
+                }
+            });
+
+            if (Object.keys(inks).length > 0) {
+                params.set('inks', JSON.stringify(inks));
+            }
+
+            // Create shareable URL
+            const shareUrl = window.location.origin + window.location.pathname + '?' + params.toString();
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                // Show notification
+                const notification = document.getElementById('shareNotification');
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }).catch(err => {
+                // Fallback: show URL in alert if clipboard fails
+                alert('Share this URL:\n\n' + shareUrl);
+            });
+        }
+
+        // Load settings from URL parameters
+        function loadFromURL() {
+            const params = new URLSearchParams(window.location.search);
+
+            // Switch to correct tab if specified
+            const tab = params.get('tab');
+            if (tab) {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+                // Activate specified tab
+                const tabButton = document.querySelector(`.tab-button[data-tab="${tab}"]`);
+                const tabContent = document.getElementById(tab);
+                if (tabButton && tabContent) {
+                    tabButton.classList.add('active');
+                    tabContent.classList.add('active');
+                }
+            }
+
+            // Load basic settings
+            const colorName = params.get('name');
+            const pmsCode = params.get('code');
+            const paperType = params.get('paper');
+            const inkYield = params.get('yield');
+            const scaleAccuracy = params.get('scale');
+            const inkSystem = params.get('system');
+
+            if (colorName) document.getElementById('colorName').value = colorName;
+            if (pmsCode) document.getElementById('pmsCode').value = pmsCode;
+            if (paperType) document.getElementById('paperType').value = paperType;
+            if (inkYield) document.getElementById('inkYield').value = inkYield;
+            if (scaleAccuracy) document.getElementById('scaleAccuracy').value = scaleAccuracy;
+            if (inkSystem) {
+                document.getElementById('inkSystem').value = inkSystem;
+                updateInkSystem();
+            }
+
+            // Load ink percentages
+            const inksJson = params.get('inks');
+            if (inksJson) {
+                try {
+                    const inks = JSON.parse(inksJson);
+                    Object.entries(inks).forEach(([inkName, percentage]) => {
+                        const input = document.querySelector(`.ink-percentage-input[data-ink="${inkName}"]`);
+                        if (input) {
+                            input.value = percentage;
+                        }
+                    });
+
+                    // Auto-calculate if we loaded ink data
+                    setTimeout(() => calculatePMS(), 100);
+                } catch (e) {
+                    console.error('Error parsing ink data from URL:', e);
+                }
+            }
+        }
+
         // Initialize PMS Mixer with current system on page load
         document.addEventListener('DOMContentLoaded', () => {
             updateInkSystem();
+            loadFromURL();
         });
     </script>
 </body>
