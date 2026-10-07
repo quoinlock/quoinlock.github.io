@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DMBSKYX7EE"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DMBSKYX7EE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Quoinlock</title>
+    <meta name="description" content="Everything in Quoinlock: daily listing monitoring, Bowker and Library of Congress data, MARC records, LC call numbers, PCIP and ONIX generation, and author identity.">
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <link rel="alternate icon" href="images/Quioin-v2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-tertiary);
+            margin-bottom: 4rem;
+        }
+
+        /* Use Case Cards */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .use-case-card {
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
+            backdrop-filter: blur(10px);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-8px);
+            border-color: color-mix(in srgb, var(--primary-indigo) 60%, transparent);
+            box-shadow: 0 12px 40px color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+        }
+
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
+            border-radius: 12px;
+        }
+
+        .use-case-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--primary-indigo-light);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .use-case-card .role {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-card .benefits {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+        }
+
+        .use-case-card .benefits h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-highlight);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .use-case-card .benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .use-case-card .benefits li {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .use-case-card .benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .content {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .use-case-card {
+                padding: 2rem 1.5rem;
+            }
+
+
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo span {
+                font-size: 1.25rem;
+            }
+
+            .nav-logo img {
+                height: 32px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .login-btn,
+            .signup-btn {
+                padding: 0.5rem 1.25rem;
+                font-size: 0.875rem;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .group-heading {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin: 1rem 0 0.5rem;
+            color: var(--text-highlight);
+        }
+
+        .group-intro {
+            color: var(--text-tertiary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 760px;
+        }
+
+        @media (min-width: 1025px) {
+            .use-cases-grid.cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .page-cta {
+            text-align: center;
+            margin: 2rem auto 0;
+            color: var(--text-tertiary);
+            font-size: 1.1rem;
+        }
+
+        .page-cta a {
+            color: var(--primary-indigo-light);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="images/Quioin-v2.png" alt="Quoinlock Logo">
+                <span>Quoinlock</span>
+            </a>
+
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links">
+                <a href="features.html">Features</a>
+                <a href="use-cases.html">Use Cases</a>
+                <a href="faq.html">FAQ</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://app.quoinlock.com" class="login-btn">Login</a>
+                <a href="https://app.quoinlock.com/auth/register" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Features</h1>
+        <p class="subtitle">Monitoring, library data and cataloging tools, all built around your ISBNs</p>
+
+        <h2 class="group-heading">Monitoring</h2>
+        <p class="group-intro">Quoinlock checks your books every day against the record of truth, the retailers and the library catalogs, and tells you what changed.</p>
+
+        <div class="use-cases-grid cols-2">
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <div class="role">Monitoring</div>
+                <h3>Daily Listing Checks</h3>
+                <p>Every monitored ISBN is checked every day for price, availability and metadata. The Base package covers Bowker Books In Print, Amazon, Barnes &amp; Noble, Bookshop.org, Google Books and the Library of Congress, and add-on packages extend that to 44 sources.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Price, availability and listing status for each source</li>
+                        <li>Retail coverage at a glance: listed at X of Y sources</li>
+                        <li>First seen and days-to-list for each retailer</li>
+                        <li>Confirmed data stays visible when a site has a bad day</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
+                <div class="role">Official Data</div>
+                <h3>Bowker &amp; Ingram Records</h3>
+                <p>See the record retailers are fed. Quoinlock shows your Bowker Books In Print record field by field, alongside Ingram catalog data, so you can spot problems at the source instead of chasing them one retailer at a time.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>38+ Bowker fields: format, dimensions, pricing, series, audience</li>
+                        <li>BISAC and BIC subjects, contributors and roles</li>
+                        <li>Ingram distribution data (via Bookfinity)</li>
+                        <li>Download the Bowker record as JSON</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+                    </svg>
+                </div>
+                <div class="role">Launches</div>
+                <h3>Launch Tracking</h3>
+                <p>A new title takes weeks to reach every store. While a book is in its launch window, Quoinlock checks availability twice a day and records when it first appears at each retailer.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Know the day your book goes live at each store</li>
+                        <li>Days-to-list for every source</li>
+                        <li>Warning for titles published under a free ISBN (KDP, IngramSpark and others)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                </div>
+                <div class="role">Alerts</div>
+                <h3>Change Alerts &amp; Digests</h3>
+                <p>Get told about the changes that matter, when you want to hear about them.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Price, availability, metadata, Bowker and MARC changes</li>
+                        <li>An alert when the Library of Congress assigns your LCCN</li>
+                        <li>Immediate, daily or weekly delivery, plus quiet hours</li>
+                        <li>Price-change thresholds and a Monday Weekly Watch Summary</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="group-heading">Library &amp; Cataloging Data</h2>
+        <p class="group-intro">Libraries are a market and an authority. Quoinlock puts their records next to your retail data.</p>
+
+        <div class="use-cases-grid cols-2">
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18"/><path d="M5 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M19 21V10"/><path d="M2 10l10-7 10 7z"/>
+                    </svg>
+                </div>
+                <div class="role">Library of Congress</div>
+                <h3>LoC MARC Records</h3>
+                <p>Your full Library of Congress MARC record and LCCN, refreshed daily and fetched on demand. Cataloging-agency codes are decoded into names, so you can see who catalogued your book and when.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Daily refresh with change alerts</li>
+                        <li>LCCN and LC classification at a glance</li>
+                        <li>Decoded MARC organization and vendor codes</li>
+                        <li>MARCXML download</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+                <div class="role">Libraries</div>
+                <h3>Library Catalog Lookup</h3>
+                <p>Query the catalogs of roughly 50 national, state, research and university libraries to see exactly how each one has catalogued an ISBN.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Ivy League, research, state, national and international libraries</li>
+                        <li>Compare cataloging across institutions</li>
+                        <li>Works for any ISBN, monitored or not</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/>
+                    </svg>
+                </div>
+                <div class="role">MARC</div>
+                <h3>MARC Comparison</h3>
+                <p>Put the Library of Congress MARC records for two ISBNs side by side. Useful for comparing a print edition with its ebook, a new edition with the last one, or your title with a comparable book.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Field-by-field side-by-side view</li>
+                        <li>Any two ISBNs</li>
+                        <li>Spot missing subjects and classification</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>
+                    </svg>
+                </div>
+                <div class="role">Classification</div>
+                <h3>LC Call Number Calculator</h3>
+                <p>Estimate a Library of Congress call number for your book. The class comes from LC's own classification data and subject headings, and the author Cutter is fitted against LC's live shelflist.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Class number and author Cutter estimate</li>
+                        <li>Uses LC's call number when one already exists</li>
+                        <li>Tells you when LC has a record but no class number yet</li>
+                        <li>A starting point for PCIP and catalogers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="group-heading">Metadata Production Tools</h2>
+        <p class="group-intro">Create the metadata the supply chain and libraries ask for, built from data Quoinlock already has.</p>
+
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>
+                    </svg>
+                </div>
+                <div class="role">Cataloging</div>
+                <h3>PCIP Generator</h3>
+                <p>Produce a Publisher's Cataloging-in-Publication (PCIP) block for your copyright page, built from your Bowker record or an ONIX file you upload and checked against Library of Congress data.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Names with author dates from LC headings</li>
+                        <li>LC subject headings, LC call number and Dewey</li>
+                        <li>Modern or legacy card layout</li>
+                        <li>Optional "LC record available at" line</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </div>
+                <div class="role">Supply Chain</div>
+                <h3>ONIX Generator</h3>
+                <p>Turn one ISBN into a schema-valid ONIX product record. Quoinlock starts from Bowker, enriches the record from the Library of Congress, and validates it against EDItEUR's schemas.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>ONIX 2.1, 3.0 and 3.1</li>
+                        <li>Shows where each field came from: Bowker, LoC or your edits</li>
+                        <li>Full editing of contributors, subjects, prices and related products</li>
+                        <li>Saved sender defaults, copy or download</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>
+                    </svg>
+                </div>
+                <div class="role">Authority</div>
+                <h3>Author Identity Lookup</h3>
+                <p>Find an author's persistent identifiers and tell same-name authors apart. Searches VIAF, LC Name Authority and ISNI, checks ORCID against ORCID's own registry, and adds detail from Wikidata and Wikipedia.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>ISNI, LC NAF and ORCID with confidence levels</li>
+                        <li>A title, ISBN or publisher helps tell same-name authors apart</li>
+                        <li>Profile with Wikipedia summary and links</li>
+                        <li>Next steps when an author has no record yet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="group-heading">Everyday Workflow</h2>
+        <p class="group-intro">The small things that make a catalog manageable.</p>
+
+        <div class="use-cases-grid cols-2">
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                </div>
+                <div class="role">Setup</div>
+                <h3>Add Books Your Way</h3>
+                <p>Type an ISBN, paste a list, upload a file, or scan the barcode with your phone. Publisher Lookup finds an imprint's titles by name and year so you can add a whole list at once.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Bulk add from CSV or plain text</li>
+                        <li>Mobile barcode scanning</li>
+                        <li>Collections and grouping by publisher</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+                <div class="role">Lookup</div>
+                <h3>Quick ISBN Lookup</h3>
+                <p>Check the Bowker and Library of Congress records for any ISBN without adding it to your dashboard. Useful for comparable titles, prospective acquisitions, or a quick check before you publish.</p>
+                <div class="benefits">
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Bowker BIP and LoC MARC in one view</li>
+                        <li>No impact on your ISBN limit</li>
+                        <li>Scan a barcode to look up a book you're holding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <p class="page-cta">Ready to see your books clearly? <a href="pricing.html">Compare plans</a> or <a href="https://app.quoinlock.com/auth/register">start free</a>.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="letterpress/">Letterpress Tools</a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/quoinlock" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@quoinlock" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/quoinlock" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/quoinlock" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/quoinlock" target="_blank" rel="noopener noreferrer" aria-label="X">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://quoinlock.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2026 Quoin LLC. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

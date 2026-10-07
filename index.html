@@ -12,7 +12,8 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quoinlock - Making Publishing Better</title>
+    <title>Quoinlock - The Metadata Toolbox for Publishers</title>
+    <meta name="description" content="See your books the way Bowker, the Library of Congress, libraries and retailers see them. Quoinlock monitors your metadata daily and gives you the tools to fix it: MARC records, LC call numbers, PCIP, ONIX and author identity.">
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
     <link rel="alternate icon" href="images/Quioin-v2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -293,6 +294,158 @@
         }
 
         /* Responsive */
+        /* Features Section */
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 0 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
+            backdrop-filter: blur(10px);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            border-color: color-mix(in srgb, var(--primary-indigo) 60%, transparent);
+            box-shadow: 0 12px 40px color-mix(in srgb, var(--primary-indigo) 20%, transparent);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, color-mix(in srgb, var(--primary-indigo) 20%, transparent) 0%, color-mix(in srgb, var(--primary-purple) 20%, transparent) 100%);
+            border-radius: 12px;
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: none;
+            stroke: var(--primary-indigo-light);
+            stroke-width: 2;
+        }
+
+        .feature-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-box p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-intro h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-indigo-light) 0%, var(--primary-purple-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-intro p {
+            color: var(--text-tertiary);
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .features + .features {
+            padding-top: 2rem;
+        }
+
+        .sources-strip {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 1rem auto 3rem;
+            padding: 0 2rem;
+            text-align: center;
+            color: var(--text-tertiary);
+            line-height: 1.8;
+        }
+
+        .sources-strip strong {
+            color: var(--text-highlight);
+        }
+
+        .sources-strip a {
+            color: var(--primary-indigo-light);
+        }
+
+        .cta-band {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: color-mix(in srgb, var(--bg-dark-1) 60%, transparent);
+            border: 1px solid color-mix(in srgb, var(--primary-indigo) 30%, transparent);
+            border-radius: 16px;
+        }
+
+        .cta-band h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-band p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-sites {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-intro h2 {
+                font-size: 1.75rem;
+            }
+        }
+
         @media (max-width: 1024px) {
             .hero-radical {
                 padding-top: 100px;
@@ -391,6 +544,7 @@
             </button>
 
             <div class="nav-links">
+                <a href="features.html">Features</a>
                 <a href="use-cases.html">Use Cases</a>
                 <a href="faq.html">FAQ</a>
                 <a href="pricing.html">Pricing</a>
@@ -411,11 +565,11 @@
                     Happier
                 </h1>
                 <p class="hero-subtitle">
-                    Monitor your book listings across hundreds of sites. Stay informed. Stay ahead. Focus on what matters.
+                    The metadata toolbox for publishers. See your books the way Bowker, the Library of Congress, libraries and retailers see them, get alerted when anything changes, and fix what's wrong with professional cataloging tools.
                 </p>
                 <div class="cta-container">
                     <a href="https://app.quoinlock.com/auth/register" class="glass-btn glass-btn-primary">Get Started</a>
-                    <a href="use-cases.html" class="glass-btn glass-btn-secondary">See How It Works</a>
+                    <a href="features.html" class="glass-btn glass-btn-secondary">Explore Features</a>
                 </div>
             </div>
 
@@ -677,17 +831,138 @@
 
         <div class="stats-grid">
             <div class="stat-box">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Sites Monitored</div>
+                <div class="stat-number">44</div>
+                <div class="stat-label">Sources Checked Daily</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Active Tracking</div>
+                <div class="stat-number">~50</div>
+                <div class="stat-label">Library Catalogs</div>
             </div>
             <div class="stat-box">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Peace of Mind</div>
+                <div class="stat-number">8</div>
+                <div class="stat-label">Metadata Tools</div>
             </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-intro">
+            <h2>Watch your books everywhere they appear</h2>
+            <p>Add your ISBNs once. Every day Quoinlock checks the record of truth, the retailers and the libraries, and tells you what changed.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <h3>Daily Listing Checks</h3>
+                <p>Price, availability and metadata from Amazon, Barnes &amp; Noble, Bookshop.org, Google Books and up to 44 retail, independent and library sources, checked every day.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
+                <h3>Bowker &amp; Distribution Data</h3>
+                <p>See your official Books In Print record (38+ fields, from dimensions to BISAC subjects) side by side with Ingram distribution data and what retailers actually show.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                </div>
+                <h3>Change Alerts</h3>
+                <p>Know when a price moves, a listing appears or disappears, your Bowker record changes, or the Library of Congress assigns your LCCN. Delivered instantly or as a daily or weekly digest.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-intro">
+            <h2>See your books the way libraries do</h2>
+            <p>Library data is metadata too. Quoinlock brings the Library of Congress and the world's research libraries into the same view as your retail listings.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18"/><path d="M5 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M19 21V10"/><path d="M2 10l10-7 10 7z"/>
+                    </svg>
+                </div>
+                <h3>Library of Congress &amp; MARC</h3>
+                <p>Your LoC MARC record and LCCN, refreshed daily, with decoded cataloging-agency codes, MARCXML download and side-by-side MARC comparison between any two ISBNs.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+                <h3>Library Catalog Lookup</h3>
+                <p>Query the catalogs of roughly 50 national, state, research and university libraries to see exactly how each one has catalogued any ISBN.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>
+                    </svg>
+                </div>
+                <h3>LC Call Number Calculator</h3>
+                <p>Estimate a Library of Congress call number from LC's own classification data, with an author Cutter fitted against LC's shelflist.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-intro">
+            <h2>Fix it with professional cataloging tools</h2>
+            <p>Tools that used to need a cataloger, a consultant or an expensive desktop app, built on the same Bowker and Library of Congress data.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>
+                    </svg>
+                </div>
+                <h3>PCIP Generator</h3>
+                <p>Produce a Publisher's Cataloging-in-Publication block for your copyright page, with subject headings, LC and Dewey classification and author dates, in modern or legacy card format.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </div>
+                <h3>ONIX Generator</h3>
+                <p>Turn an ISBN into a schema-valid ONIX 2.1, 3.0 or 3.1 record, built from Bowker and enriched from the Library of Congress, with per-field provenance and full editing.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>
+                    </svg>
+                </div>
+                <h3>Author Identity</h3>
+                <p>Find your authors' ISNI, LC Name Authority and ORCID identifiers across VIAF, ISNI, the Library of Congress, ORCID and Wikidata, with confidence levels and next steps when there's no match.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sources-strip">
+        <p><strong>Also included:</strong> Quick ISBN Lookup, Publisher Lookup, mobile barcode scanning, a weekly watch summary, and Bowker, MARCXML and ONIX downloads. <a href="features.html">Explore every feature &rarr;</a></p>
+    </div>
+
+    <section class="features">
+        <div class="cta-band">
+            <h2>Start with two books, free</h2>
+            <p>The Free plan monitors up to 2 ISBNs with the Base source package and every tool included. No credit card, no expiry.</p>
+            <a href="https://app.quoinlock.com/auth/register" class="glass-btn glass-btn-primary">Get Started Free</a>
         </div>
     </section>
 
@@ -743,7 +1018,7 @@
     <script src="js/main.js"></script>
     <script>
         // Rotating word animation for mega title
-        const words = ['Publishers', 'Authors', 'Distributors', 'Retailers', 'Bookstores', 'Libraries'];
+        const words = ['Publishers', 'Authors', 'Catalogers', 'Librarians', 'Small Presses', 'Distributors'];
         let currentIndex = 0;
         const rotatingElement = document.getElementById('rotatingWord');
 

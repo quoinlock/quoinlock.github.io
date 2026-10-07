@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Quoinlock</title>
+    <meta name="description" content="Answers about Quoinlock: data sources, monitored sites, check frequency, alerts, LC call numbers, PCIP, ONIX, author identity and plans.">
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
     <link rel="alternate icon" href="images/Quioin-v2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,7 +107,7 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 500px;
+            max-height: 1200px;
         }
 
         .faq-answer-content {
@@ -154,6 +155,15 @@
                 padding: 0 1.5rem 1.25rem 1.5rem;
             }
         }
+
+        .faq-answer-content a {
+            color: var(--primary-indigo-light);
+        }
+
+        .faq-answer-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -172,6 +182,7 @@
             </button>
 
             <div class="nav-links">
+                <a href="features.html">Features</a>
                 <a href="use-cases.html">Use Cases</a>
                 <a href="faq.html">FAQ</a>
                 <a href="pricing.html">Pricing</a>
@@ -201,7 +212,7 @@
                     <div class="faq-answer-content">
                         <p>The name "Quoinlock" comes from traditional letterpress printing. In letterpress, a <strong>quoin</strong> (pronounced "coin") is an expandable wedge device used to lock type and printing blocks firmly in place within the chase—the metal frame that holds the printing form. Printers would tighten quoins to secure everything perfectly before printing, ensuring nothing shifted during the press run.</p>
                         <img src="images/hempel-quoin.png" alt="A Hempel quoin, an expandable metal wedge device used in letterpress printing" style="max-width: 400px; width: 100%; height: auto; margin: 1.5rem auto; display: block; border-radius: 8px;">
-                        <p>Just as quoins locked type in place to ensure consistent, accurate printing, Quoinlock helps you keep your book metadata locked in and monitored across the digital publishing landscape. We carry forward that tradition of precision and reliability from the age of hand-set type into the modern world of digital book distribution.</p>
+                        <p>Just as quoins locked type in place to ensure consistent, accurate printing, Quoinlock helps you lock your book metadata in place, so it reads the same at Bowker, at the retailers and in the library catalog. We carry forward that tradition of precision and reliability from the age of hand-set type into the modern world of digital book distribution.</p>
                     </div>
                 </div>
             </div>
@@ -217,14 +228,14 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>Quoinlock is a book listing monitoring service that tracks your books across hundreds of online retail sites. We help publishers, authors, retailers, and bookstores ensure their book listings are accurate and up-to-date everywhere they appear online.</p>
+                        <p>Quoinlock is a metadata toolbox for publishers. It shows you how your books appear in the official Bowker record, at retailers and in library catalogs, including the Library of Congress. It tells you when any of that changes, and gives you tools to produce the metadata the industry asks for: PCIP blocks, ONIX records, LC call number estimates and author identifiers.</p>
                     </div>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">
-                    <h3>How does Quoinlock work?</h3>
+                    <h3>Who is Quoinlock for?</h3>
                     <div class="faq-icon">
                         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -233,7 +244,30 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>Simply enter your ISBNs into Quoinlock, and we automatically monitor your book listings across hundreds of online retail sites. When we detect any changes to your listings—such as pricing updates, availability changes, or metadata modifications—we send you instant notifications so you can stay informed and take action when needed.</p>
+                        <p>Independent and small presses managing a list, self-publishers and authors seeing a book through launch, and the production and cataloging staff who keep metadata accurate. If you have ISBNs, Quoinlock is built for you. See <a href="use-cases.html">Use Cases</a> for examples.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Where does Quoinlock's data come from?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Quoinlock combines several authoritative sources with what the market actually shows:</p><ul>
+                            <li><strong>Bowker Books In Print</strong>: the official US record for your ISBN</li>
+                            <li><strong>Library of Congress</strong>: MARC records, LCCNs, classification, subject and name authorities</li>
+                            <li><strong>Ingram</strong>: distribution catalog data (via Bookfinity)</li>
+                            <li><strong>Retailers and library sites</strong>: Amazon, Barnes &amp; Noble, Bookshop.org, WorldCat and more</li>
+                            <li><strong>Research library catalogs</strong>: about 50 national, state and university libraries</li>
+                            <li><strong>Identity registries</strong>: VIAF, ISNI, ORCID and Wikidata for author identity</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -249,24 +283,35 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>Quoinlock monitors hundreds of online retail sites, including major platforms such as:</p>
+                        <p>Up to 44 sources, organized into packages. Every plan includes the <strong>Base</strong> package: Bowker Books In Print, the Library of Congress, Amazon, Barnes &amp; Noble, Bookshop.org and Google Books. Add-on packages cover major retailers (Walmart, Target, Books-A-Million, Powell's and more), 25 independent bookstores, library sites (WorldCat and LibraryThing), and specialty sites such as Goodreads, Edelweiss+ and AbeBooks. See <a href="pricing.html">Pricing</a> for the full list.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How often are my books checked?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
                         <ul>
-                            <li>Bowker Bookwire</li>
-                            <li>Amazon</li>
-                            <li>Barnes & Noble</li>
-                            <li>Walmart</li>
-                            <li>Bookshop.org</li>
-                            <li>GoodReads</li>
-                            <li>And hundreds more</li>
-                        </ul>
-                        <p>The number of sites monitored depends on your subscription plan.</p>
+                            <li>Retail and library listings: every day</li>
+                            <li>Library of Congress MARC records: every day</li>
+                            <li>Bowker Books In Print records: every week</li>
+                            <li>New releases: twice a day while the title is in its launch window</li>
+                        </ul><p>You can also refresh any source on demand from a book's page.</p>
                     </div>
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">
-                    <h3>How often are book listings checked?</h3>
+                    <h3>What changes does Quoinlock detect?</h3>
                     <div class="faq-icon">
                         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -275,30 +320,13 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>Quoinlock continuously monitors your book listings throughout the day. The exact frequency varies by site and subscription level, but most listings are checked multiple times daily to ensure you receive timely notifications of any changes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What types of changes does Quoinlock detect?</h3>
-                    <div class="faq-icon">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        <p>Quoinlock monitors various aspects of your book listings, including:</p>
                         <ul>
                             <li>Price changes</li>
-                            <li>Availability status</li>
-                            <li>Metadata updates (title, description, author)</li>
-                            <li>Cover image changes</li>
-                            <li>Category and classification updates</li>
-                            <li>New or removed listings</li>
+                            <li>Availability and stock status</li>
+                            <li>A listing appearing at, or disappearing from, a source</li>
+                            <li>Metadata changes such as title, contributors and description</li>
+                            <li>Changes to your Bowker Books In Print record</li>
+                            <li>Changes to your Library of Congress MARC record, including when your LCCN is assigned</li>
                         </ul>
                     </div>
                 </div>
@@ -306,7 +334,7 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    <h3>How do I get started with Quoinlock?</h3>
+                    <h3>How will I be notified?</h3>
                     <div class="faq-icon">
                         <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -315,13 +343,103 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>Getting started with Quoinlock is easy:</p>
-                        <ul>
-                            <li>Choose a subscription plan that fits your needs</li>
-                            <li>Create your account</li>
-                            <li>Enter your book ISBNs</li>
-                            <li>We'll handle the rest—monitoring begins immediately!</li>
-                        </ul>
+                        <p>By email, either immediately or as a daily or weekly digest. You choose which kinds of change you hear about, set a minimum price-change threshold, and set quiet hours. Every Monday you also get a Weekly Watch Summary covering coverage, new listings and the week's changes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Does the LC Call Number Calculator give me an exact call number?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>It gives you an estimate. If the Library of Congress has already classified your book, Quoinlock shows LC's own call number. If not, the calculator derives a class from LC's classification data and subject headings, and fits the author Cutter against LC's shelflist. It's a strong starting point for a PCIP block or a cataloger, but only the Library of Congress assigns the final call number.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is a PCIP block, and do I need one?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Cataloging-in-Publication (CIP) data is the library cataloging block on a book's copyright page. Publishers who aren't eligible for the Library of Congress CIP program, including most self-publishers, often print a Publisher's Cataloging-in-Publication (PCIP) block instead, so librarians can catalog the book quickly. Quoinlock's PCIP Generator builds one from your Bowker record or ONIX file and checks it against Library of Congress data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is ONIX, and which versions do you support?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>ONIX is the industry-standard XML format for exchanging book metadata with distributors, retailers and aggregators. The ONIX Generator produces ONIX 2.1, 3.0 and 3.1 records for any ISBN, built from Bowker and enriched from the Library of Congress. 3.0 and 3.1 output is validated against EDItEUR's official schemas. You can review and edit every field before you download.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What are ISNI, LC Name Authority and ORCID?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>They are persistent identifiers that tell an author apart from everyone else with the same name. Libraries rely on the LC Name Authority File, ISNI links authors across the book supply chain, and ORCID is widely used for academic authors. Author Identity Lookup shows which of these identifiers an author already has, how confident the match is, and what to do next if they don't have one.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Does Quoinlock change my metadata at Bowker or at retailers?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>No. Quoinlock reads and reports. It never edits your records anywhere. When something is wrong, it shows you where the problem is and gives you what you need to fix it at the source: a downloadable record, an ONIX file, or guidance for the right registry.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What does the Free plan include?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>The Free plan monitors up to 2 ISBNs with the Base source package, and includes every tool. It doesn't expire. Upgrade whenever you need more books or more sources.</p>
                     </div>
                 </div>
             </div>
@@ -337,7 +455,27 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>Yes, you can upgrade or downgrade your subscription plan at any time. Changes to your plan will be reflected in your next billing cycle. If you need a custom solution for a large catalog, please contact us to discuss enterprise options.</p>
+                        <p>Yes, at any time from your profile. If your catalog has more than 200 ISBNs, <a href="contact.html">contact us</a> about an Enterprise plan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do I get started?</h3>
+                    <div class="faq-icon">
+                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ol>
+                            <li>Create a free account</li>
+                            <li>Add your ISBNs. Type them, paste a list, upload a file, scan a barcode, or import a publisher's titles.</li>
+                            <li>Quoinlock fetches every source right away, then keeps watching</li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -353,10 +491,11 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        <p>All Quoinlock plans include customer support via email. Response times vary by plan level, with priority support available for higher-tier subscriptions.</p>
+                        <p>All plans include email support. Use the <a href="contact.html">contact form</a> and we'll get back to you.</p>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
