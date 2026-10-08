@@ -560,9 +560,9 @@
         <div class="hero-grid">
             <div class="hero-left">
                 <h1 class="mega-title">
-                    Make
-                    <span class="highlight" id="rotatingWord">Publishers</span>
-                    Happier
+                    Total
+                    <span class="highlight">Metadata</span>
+                    Visibility
                 </h1>
                 <p class="hero-subtitle">
                     The metadata toolbox for publishers. See your books the way the industry, the Library of Congress, libraries and retailers see them, get alerted when anything changes, and fix what's wrong with professional cataloging tools.
@@ -1016,30 +1016,5 @@
 
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        // Rotating word animation for mega title
-        const words = ['Publishers', 'Authors', 'Catalogers', 'Librarians', 'Small Presses', 'Distributors'];
-        let currentIndex = 0;
-        const rotatingElement = document.getElementById('rotatingWord');
-
-        function rotateWord() {
-            // Fade out
-            rotatingElement.style.opacity = '0';
-
-            setTimeout(() => {
-                // Change word
-                currentIndex = (currentIndex + 1) % words.length;
-                rotatingElement.textContent = words[currentIndex];
-
-                // Fade in
-                rotatingElement.style.opacity = '1';
-            }, 400);
-        }
-
-        // Start rotation after initial delay
-        setTimeout(() => {
-            setInterval(rotateWord, 3000);
-        }, 2000);
-    </script>
 </body>
 </html>
